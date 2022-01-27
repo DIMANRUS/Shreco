@@ -21,4 +21,8 @@
         <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       </EmbeddedResource>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shreco.Models\Shreco.Models.csproj" />
+    </ItemGroup>
 </Project>

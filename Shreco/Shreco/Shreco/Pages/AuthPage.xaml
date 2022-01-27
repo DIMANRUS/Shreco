@@ -2,15 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Shreco.Pages.AuthPage"
-             xmlns:zhing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" 
-                   FontSize="30"
-                   x:Name="label"/>
-            <zhing:ZXingScannerView IsScanning="True" OnScanResult="ZXingScannerView_OnOnScanResult"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
