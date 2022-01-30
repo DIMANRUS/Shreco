@@ -11,5 +11,7 @@ namespace Shreco.Models {
         public string Email { get; set; }
         [StringLength(100)]
         public string? Adress { get; set; }
+        [StringLength(30)]
+        public string? Phone { get; set; }
     }
 }

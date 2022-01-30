@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Shreco.App"
-             PageAppearing="App_OnPageAppearing">
+             x:Class="Shreco.App">
     <Application.Resources>
         <Style TargetType="{x:Type ContentPage}">
             <Setter Property="BackgroundColor"
@@ -11,12 +10,29 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="TextColor"
                     Value="{AppThemeBinding Light=Black, Dark=White}" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="30"/>
         </Style>
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontAttributes"
                     Value="Bold" />
             <Setter Property="CornerRadius"
                     Value="15" />
+        </Style>
+        <Style TargetType="{x:Type Frame}">
+            <Setter Property="BorderColor"
+                    Value="DarkRed" />
+            <Setter Property="CornerRadius"
+                    Value="15" />
+            <Setter Property="Padding"
+                    Value="20" />
+            <Setter Property="BackgroundColor"
+                    Value="Transparent" />
+        </Style>
+        <Style TargetType="{x:Type Entry}">
+            <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
         </Style>
     </Application.Resources>
 </Application>

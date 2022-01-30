@@ -31,4 +31,12 @@ public class AuthController : ControllerBase {
             return await _codeService.SendCode(mail);
         return BadRequest("This not mail");
     }
+
+    [HttpPost("/QrAuth")]
+    [Authorize(AuthenticationSchemes = "QrJWT")]
+    public async Task<IActionResult> SendCode() {
+        if (Regex.IsMatch(mail, @"^\S+@\S+\.\S+$"))
+            return await _codeService.SendCode(mail);
+        return BadRequest("This not mail");
+    }
 }

@@ -24,6 +24,15 @@ builder.Services.AddAuthentication(options => {
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SessionKey"])),
         RequireExpirationTime = true
     };
+}).AddJwtBearer("QrJWT", options => {
+    options.TokenValidationParameters = new TokenValidationParameters {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:QrKey"])),
+    };
 });
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IMailService, MailService>();

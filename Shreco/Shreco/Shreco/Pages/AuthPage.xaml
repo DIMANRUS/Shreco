@@ -2,10 +2,67 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Shreco.Pages.AuthPage"
-             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             xmlns:viewModels="clr-namespace:Shreco.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:views="clr-namespace:Shreco.Views">
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior Command="{Binding OnLoadPageCommand}"
+                                    EventName="Appearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.BindingContext>
+        <viewModels:AuthPageViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-
-        </StackLayout>
+        <Grid xct:StateLayout.CurrentState="{Binding CurrentLayoutState}"
+              xct:StateLayout.AnimateStateChanges="true">
+            <xct:StateLayout.StateViews>
+                <xct:StateView StateKey="Loading">
+                    <views:LoaderView />
+                </xct:StateView>
+            </xct:StateLayout.StateViews>
+            <StackLayout Margin="20"
+                         VerticalOptions="Start">
+                <Label Text="Добро пожаловать!"
+                       FontSize="40"
+                       HorizontalTextAlignment="Center" />
+                <Label Text="Делитесь.Зарабатывайте.Рекомендуйте."
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Frame HasShadow="True">
+                
+            </Frame>
+            <Frame Padding="6"
+                   CornerRadius="30"
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   Margin="10">
+                <ImageButton Source="brush"
+                             BackgroundColor="Transparent"
+                             Margin="5"
+                             HeightRequest="40">
+                    <ImageButton.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Clicked"
+                                                    Command="{Binding ChangeTheme}" />
+                    </ImageButton.Behaviors>
+                </ImageButton>
+            </Frame>
+            <Frame Padding="6"
+                   CornerRadius="30"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End"
+                   Margin="10">
+                <ImageButton Source="qr"
+                             BackgroundColor="Transparent"
+                             Margin="5"
+                             HeightRequest="40">
+                    <ImageButton.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Clicked"
+                                                    Command="{Binding QrScanOpen}" />
+                    </ImageButton.Behaviors>
+                </ImageButton>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
