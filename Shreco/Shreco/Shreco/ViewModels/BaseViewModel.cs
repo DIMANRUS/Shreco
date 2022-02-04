@@ -10,10 +10,6 @@ using ZXing.Net.Mobile.Forms;
 namespace Shreco.ViewModels {
     internal class BaseViewModel : INotifyPropertyChanged {
         public BaseViewModel() {
-            ChangeTheme = new AsyncCommand(async () => {
-                Application.Current.UserAppTheme = Application.Current.UserAppTheme == OSAppTheme.Dark ? OSAppTheme.Light : OSAppTheme.Dark;
-                await SecureStorage.SetAsync("Theme", Application.Current.UserAppTheme == OSAppTheme.Dark ? "Light" : "Dark");
-            });
             QrScanOpen = new AsyncCommand(async () => {
                 var scanPage = new ZXingScannerPage();
                 await Application.Current.MainPage.Navigation.PushModalAsync(scanPage, true);
@@ -39,7 +35,6 @@ namespace Shreco.ViewModels {
         #endregion
         #region Commands
         public ICommand OnLoadPageCommand { get; protected set; }
-        public ICommand ChangeTheme { get; }
         public ICommand QrScanOpen { get; }
 
         #endregion

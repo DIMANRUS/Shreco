@@ -1,20 +1,17 @@
 ﻿using System.Threading.Tasks;
 using Shreco.Pages;
-using Xamarin.Forms;
+using Shreco.Stores;
 using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Shreco {
     public partial class App {
         public App() {
             InitializeComponent();
-            Current.UserAppTheme = OSAppTheme.Dark;
-            string userToken = null;
             Task taskLoadData = Task.Factory.StartNew(async ()
-                => userToken = await SecureStorage.GetAsync("UserToken"));
+                => await UserDataStore.Initializate());
             taskLoadData.Wait();
-            if (userToken == null)
+            if (UserDataStore.Token == null)
                 MainPage = new AuthPage();
             else
                 MainPage = new ShellPage();

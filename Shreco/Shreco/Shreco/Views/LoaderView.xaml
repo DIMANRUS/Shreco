@@ -6,7 +6,6 @@
         <ActivityIndicator IsRunning="True"
                            HeightRequest="60"
                            Color="Red"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" />
+                           HorizontalOptions="Center" />
     </ContentView.Content>
 </ContentView>

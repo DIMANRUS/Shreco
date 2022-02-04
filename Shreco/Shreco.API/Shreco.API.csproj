@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shreco.EFDataAccessLibrary\Shreco.EFDataAccessLibrary.csproj" />
+    <ProjectReference Include="..\Shreco.Helpers\Shreco.Helpers.csproj" />
   </ItemGroup>
 
 </Project>

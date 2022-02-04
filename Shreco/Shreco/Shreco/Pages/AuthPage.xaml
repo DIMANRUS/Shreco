@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Shreco.Pages.AuthPage"
-             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
              xmlns:viewModels="clr-namespace:Shreco.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:views="clr-namespace:Shreco.Views">
@@ -17,12 +16,11 @@
         <Grid xct:StateLayout.CurrentState="{Binding CurrentLayoutState}"
               xct:StateLayout.AnimateStateChanges="true">
             <xct:StateLayout.StateViews>
-                <xct:StateView StateKey="Loading">
+                <xct:StateView StateKey="Loading" VerticalOptions="Center">
                     <views:LoaderView />
                 </xct:StateView>
             </xct:StateLayout.StateViews>
-            <StackLayout Margin="20"
-                         VerticalOptions="Start">
+            <StackLayout Margin="10">
                 <Label Text="Добро пожаловать!"
                        FontSize="40"
                        HorizontalTextAlignment="Center" />
@@ -30,27 +28,57 @@
                        FontSize="Large"
                        HorizontalTextAlignment="Center" />
             </StackLayout>
-            <Frame HasShadow="True">
-                
+            <Frame HasShadow="True"
+                   Margin="20"
+                   VerticalOptions="Center">
+                <StackLayout>
+                    <Label Text="Вход"
+                           HorizontalTextAlignment="Center" />
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="mail"
+                               HeightRequest="35" />
+                        <Entry Placeholder="Почта"
+                               Keyboard="Email"
+                               HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 IsVisible="{Binding IsRegistration}">
+                        <Image Source="phone"
+                               HeightRequest="35" />
+                        <Entry Placeholder="Номер телефона"
+                               Keyboard="Telephone"
+                               HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 IsVisible="{Binding IsRegistration}">
+                        <Image Source="address"
+                               HeightRequest="35" />
+                        <Entry Placeholder="Адрес"
+                               WidthRequest="230"
+                               Text="{Binding Address}" />
+                        <Image Source="location"
+                               HeightRequest="35">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GetAddressLocation}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <Button Text="{Binding IsRegistration, Converter={StaticResource AuthStateToButtonTextConverter}, ConverterParameter={StaticResource AuthButton}}"
+                            VerticalOptions="CenterAndExpand"
+                            FontSize="16"
+                            HeightRequest="40"
+                            BackgroundColor="DarkOrange" />
+                    <Button Text="{Binding IsRegistration,Converter={StaticResource AuthStateToButtonTextConverter}}"
+                            BackgroundColor="Transparent"
+                            TextColor="Purple"
+                            VerticalOptions="CenterAndExpand"
+                            FontSize="12"
+                            Command="{Binding ChangeAuthState}" />
+                </StackLayout>
             </Frame>
             <Frame Padding="6"
                    CornerRadius="30"
                    HorizontalOptions="End"
-                   VerticalOptions="End"
-                   Margin="10">
-                <ImageButton Source="brush"
-                             BackgroundColor="Transparent"
-                             Margin="5"
-                             HeightRequest="40">
-                    <ImageButton.Behaviors>
-                        <xct:EventToCommandBehavior EventName="Clicked"
-                                                    Command="{Binding ChangeTheme}" />
-                    </ImageButton.Behaviors>
-                </ImageButton>
-            </Frame>
-            <Frame Padding="6"
-                   CornerRadius="30"
-                   HorizontalOptions="Start"
                    VerticalOptions="End"
                    Margin="10">
                 <ImageButton Source="qr"

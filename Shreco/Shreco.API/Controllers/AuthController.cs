@@ -18,7 +18,7 @@ public class AuthController : ControllerBase {
     [Authorize(AuthenticationSchemes = "SessionJWT")]
     public async Task<IActionResult> Auth([FromBody] User user, string code) {
         var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
-        if (!await _codeService.CheckValidCode(_tokenService.GetNameIdentifer(bearerToken), code))
+        if (!await _codeService.CheckValidCode(TokenHelper.GetNameIdentifer(bearerToken), code))
             return BadRequest("Code failed");
         if (ModelState.IsValid)
             return await _authService.Auth(user);
@@ -32,11 +32,11 @@ public class AuthController : ControllerBase {
         return BadRequest("This not mail");
     }
 
-    [HttpPost("/QrAuth")]
-    [Authorize(AuthenticationSchemes = "QrJWT")]
-    public async Task<IActionResult> SendCode() {
-        if (Regex.IsMatch(mail, @"^\S+@\S+\.\S+$"))
-            return await _codeService.SendCode(mail);
-        return BadRequest("This not mail");
-    }
+    //[HttpPost("/QrAuth")]
+    //[Authorize(AuthenticationSchemes = "QrJWT")]
+    //public async Task<IActionResult> SendCode() {
+    //    if (Regex.IsMatch(mail, @"^\S+@\S+\.\S+$"))
+    //        return await _codeService.SendCode(mail);
+    //    return BadRequest("This not mail");
+    //}
 }

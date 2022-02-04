@@ -4,10 +4,6 @@ public class TokenService : ITokenService {
     private readonly IConfiguration _configuration;
     public TokenService(IConfiguration configuration) =>
         _configuration = configuration;
-    #region Private Methods
-    private static IEnumerable<Claim> GetClaims(string token) =>
-        new JwtSecurityTokenHandler().ReadJwtToken(token).Claims;
-    #endregion
     #region Public Methods
     public string CreateUserToken(User user) {
         var claims = new[] {
@@ -38,9 +34,20 @@ public class TokenService : ITokenService {
             signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
-    public string GetNameIdentifer(string token) =>
-        GetClaims(token).First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-    public string GetName(string token) =>
-        GetClaims(token).First(c => c.Type == ClaimTypes.Name).Value;
+    public string CreateQrToken(Qr qr) {
+        var claims = new[] {
+            new Claim(ClaimTypes.NameIdentifier, qr.Id.ToString()),
+            new Claim(ClaimTypes.Name, qr.WhoCreated.Id.ToString()),
+            new Claim(ClaimTypes.Role, qr.QrType.ToString())
+        };
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:QrKey"]));
+        var token = new JwtSecurityToken(
+            _configuration["JwtSettings:Issuer"],
+            _configuration["JwtSettings:Audience"],
+            expires: DateTime.Now.AddMinutes(10),
+            claims: claims,
+            signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
     #endregion
 }

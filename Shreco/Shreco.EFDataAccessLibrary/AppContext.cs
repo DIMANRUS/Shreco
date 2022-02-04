@@ -9,4 +9,5 @@ public class AppContext : DbContext {
     }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<Qr> Qrs { get; set; }
 }
