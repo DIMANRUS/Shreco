@@ -1,3 +1,0 @@
-SELECT SessionId,
-       Code
-  FROM Sessions;

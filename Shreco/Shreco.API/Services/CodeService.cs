@@ -26,10 +26,8 @@ public class CodeService : ControllerBase, ICodeService {
             code += random.Next(100);
         return code;
     }
-    private async Task RemoveSession(string sessionId) {
-        Session? session = await _liteContext.Sessions.AsNoTracking().FirstOrDefaultAsync(x => x.SessionId == sessionId);
-        if (session != null)
-            _liteContext.Remove(session);
+    private async Task RemoveSession(Session session) {
+        _liteContext.Remove(session);
         await _liteContext.SaveChangesAsync();
     }
     #endregion
@@ -49,10 +47,11 @@ public class CodeService : ControllerBase, ICodeService {
         }
     }
     public async Task<bool> CheckValidCode(string sessionId, string userCode) {
-        Session? session = await _liteContext.Sessions.AsNoTracking().FirstOrDefaultAsync(x => x.SessionId == sessionId);
+        IEnumerable<Session> sessions = await _liteContext.Sessions.ToListAsync();
+        Session? session = await _liteContext.Sessions.FirstOrDefaultAsync(x => x.SessionId == sessionId);
         if (session == null)
             return false;
-        await RemoveSession(sessionId);
+        await RemoveSession(session);
         return session.Code == userCode;
     }
 

@@ -14,22 +14,31 @@ public class AuthController : ControllerBase {
         _tokenService = tokenService;
     }
 
-    [HttpPost("/{code}")]
+    [HttpPost]
     [Authorize(AuthenticationSchemes = "SessionJWT")]
-    public async Task<IActionResult> Auth([FromBody] User user, string code) {
+    public async Task<IActionResult> Auth([FromQuery] string email, [FromQuery] string code) {
         var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
         if (!await _codeService.CheckValidCode(TokenHelper.GetNameIdentifer(bearerToken), code))
-            return BadRequest("Code failed");
+            return BadRequest("Неправильный код!");
+        return await _authService.Auth(email);
+    }
+
+    [HttpPost("Register/{code}")]
+    [Authorize(AuthenticationSchemes = "SessionJWT")]
+    public async Task<IActionResult> Register([FromBody] User user, string code) {
+        var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+        if (!await _codeService.CheckValidCode(TokenHelper.GetNameIdentifer(bearerToken), code))
+            return BadRequest("Неправильный код!");
         if (ModelState.IsValid)
-            return await _authService.Auth(user);
+            return await _authService.Register(user);
         return BadRequest("User not valid");
     }
 
-    [HttpPost("/SendCode/{mail}")]
-    public async Task<IActionResult> SendCode(string mail) {
-        if (Regex.IsMatch(mail, @"^\S+@\S+\.\S+$"))
-            return await _codeService.SendCode(mail);
-        return BadRequest("This not mail");
+    [HttpGet("SendCode/{email}")]
+    public async Task<IActionResult> SendCode(string email) {
+        if (Regex.IsMatch(email, @"^\S+@\S+\.\S+$"))
+            return await _codeService.SendCode(email);
+        return BadRequest("This not email");
     }
 
     //[HttpPost("/QrAuth")]

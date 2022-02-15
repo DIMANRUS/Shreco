@@ -1,6 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+#if DEBUG
+builder.Services.AddDbContext<AppContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShrecoLocalDatabase"), b => b.MigrationsAssembly("Shreco.API")));
+#else
 builder.Services.AddDbContext<AppContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShrecoDatabase"), b => b.MigrationsAssembly("Shreco.API")));
+#endif
+
 builder.Services.AddDbContext<LiteContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteDatabase")));
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

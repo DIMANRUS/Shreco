@@ -16,7 +16,8 @@
         <Grid xct:StateLayout.CurrentState="{Binding CurrentLayoutState}"
               xct:StateLayout.AnimateStateChanges="true">
             <xct:StateLayout.StateViews>
-                <xct:StateView StateKey="Loading" VerticalOptions="Center">
+                <xct:StateView StateKey="Loading"
+                               VerticalOptions="Center">
                     <views:LoaderView />
                 </xct:StateView>
             </xct:StateLayout.StateViews>
@@ -39,7 +40,17 @@
                                HeightRequest="35" />
                         <Entry Placeholder="Почта"
                                Keyboard="Email"
-                               HorizontalOptions="FillAndExpand" />
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding Email}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 IsVisible="{Binding IsRegistration}">
+                        <Image Source="mail"
+                               HeightRequest="35" />
+                        <Entry Placeholder="Имя пользователя"
+                               Keyboard="Text"
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding UserName}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal"
                                  IsVisible="{Binding IsRegistration}">
@@ -47,7 +58,8 @@
                                HeightRequest="35" />
                         <Entry Placeholder="Номер телефона"
                                Keyboard="Telephone"
-                               HorizontalOptions="FillAndExpand" />
+                               HorizontalOptions="FillAndExpand"
+                               Text="{Binding PhoneNumber}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal"
                                  IsVisible="{Binding IsRegistration}">
@@ -67,7 +79,8 @@
                             VerticalOptions="CenterAndExpand"
                             FontSize="16"
                             HeightRequest="40"
-                            BackgroundColor="DarkOrange" />
+                            BackgroundColor="DarkOrange" 
+                            Command="{Binding AuthCommand}"/>
                     <Button Text="{Binding IsRegistration,Converter={StaticResource AuthStateToButtonTextConverter}}"
                             BackgroundColor="Transparent"
                             TextColor="Purple"

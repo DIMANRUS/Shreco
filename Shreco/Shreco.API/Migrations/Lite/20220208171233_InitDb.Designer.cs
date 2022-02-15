@@ -10,7 +10,7 @@ using Shreco.API.Data;
 namespace Shreco.API.Migrations.Lite
 {
     [DbContext(typeof(LiteContext))]
-    [Migration("20220127070803_InitDb")]
+    [Migration("20220208171233_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
