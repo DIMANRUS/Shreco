@@ -14,7 +14,7 @@ public class AuthController : ControllerBase {
         _tokenService = tokenService;
     }
 
-    [HttpPost]
+    [HttpGet]
     [Authorize(AuthenticationSchemes = "SessionJWT")]
     public async Task<IActionResult> Auth([FromQuery] string email, [FromQuery] string code) {
         var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
@@ -25,7 +25,7 @@ public class AuthController : ControllerBase {
 
     [HttpPost("Register/{code}")]
     [Authorize(AuthenticationSchemes = "SessionJWT")]
-    public async Task<IActionResult> Register([FromBody] User user, string code) {
+    public async Task<IActionResult> Register([FromBody] User user, [FromRoute]string code) {
         var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
         if (!await _codeService.CheckValidCode(TokenHelper.GetNameIdentifer(bearerToken), code))
             return BadRequest("Неправильный код!");

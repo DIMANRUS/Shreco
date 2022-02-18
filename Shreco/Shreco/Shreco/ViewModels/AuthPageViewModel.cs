@@ -3,7 +3,8 @@
 namespace Shreco.ViewModels;
 
 internal class AuthPageViewModel : BaseViewModel {
-    public AuthPageViewModel() {
+    public AuthPageViewModel()
+    {
         #region Commands
         OnLoadPageCommand = new Command(() => {
             CurrentLayoutState = LayoutState.None;
@@ -25,29 +26,36 @@ internal class AuthPageViewModel : BaseViewModel {
         });
         AuthCommand = new AsyncCommand(async () => {
             CurrentLayoutState = LayoutState.Loading;
-            //try {
-            User user = new() {
-                Email = Email,
-                Adress = Address,
-                Phone = PhoneNumber,
-                NameIdentifer = UserName
-            };
-            using HttpHelper httpHelper = new();
-            HttpResponseMessage responseSessionToken = await httpHelper.GetRequest($"/Auth/SendCode/{user.Email}");
-            if (responseSessionToken.IsSuccessStatusCode) {
-                string userCode = await Application.Current.MainPage.DisplayPromptAsync("Код", "Введите код с почты", "Ок");
-                HttpResponseMessage responseAuth = await httpHelper.GetRequest($"/Auth?email={user.Email}&code={userCode}", await responseSessionToken.Content.ReadAsStringAsync());
-                string f = await responseAuth.Content.ReadAsStringAsync();
-                if (responseAuth.IsSuccessStatusCode)
-                    await Application.Current.MainPage.DisplayAlert("Ура", "", "Закрыть");
-                else
-                    await Application.Current.MainPage.DisplayAlert("Ошибка", "", "Закрыть");
-            } else {
-                await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка сервера", "Закрыть");
+            try {
+                User user = new() {
+                    Email = Email,
+                    Adress = Address,
+                    Phone = PhoneNumber,
+                    NameIdentifer = UserName
+                };
+                using HttpHelper httpHelper = new();
+                HttpResponseMessage responseSessionToken = await httpHelper.GetRequest($"/Auth/SendCode/{user.Email}");
+                if (responseSessionToken.IsSuccessStatusCode) {
+                    string userCode = await Application.Current.MainPage.DisplayPromptAsync("Код", "Введите код с почты", "Ок");
+                    if (userCode != String.Empty) {
+                        HttpResponseMessage response;
+                        if (_isRegistration)
+                            response = await httpHelper.PostRequest($"/Auth/Register/{userCode}", user, await responseSessionToken.Content.ReadAsStringAsync());
+                        else
+                            response = await httpHelper.GetRequest($"/Auth?email={user.Email}&code={userCode}", await responseSessionToken.Content.ReadAsStringAsync());
+                        if (response.IsSuccessStatusCode)
+                            await Application.Current.MainPage.DisplayAlert("Ура", await response.Content.ReadAsStringAsync(), "Закрыть");
+                        else
+                            await Application.Current.MainPage.DisplayAlert("Ошибка", await response.Content.ReadAsStringAsync(), "Закрыть");
+                    } else {
+                        await Application.Current.MainPage.DisplayAlert("Ошибка", "Пустое поле", "Закрыть");
+                    }
+                } else {
+                    await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка сервера", "Закрыть");
+                }
+            } catch {
+                await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка отправки запроса", "Закрыть");
             }
-            //} catch {
-            //    await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка отправки запроса", "Закрыть");
-            //}
             CurrentLayoutState = LayoutState.None;
         });
         #endregion

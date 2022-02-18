@@ -5,12 +5,14 @@ public class AuthService : ControllerBase, IAuthService {
     private readonly ITokenService _tokenService;
     #endregion
 
-    public AuthService(IUserService userService, ITokenService tokenService) {
+    public AuthService(IUserService userService, ITokenService tokenService)
+    {
         _userService = userService;
         _tokenService = tokenService;
     }
 
-    public async Task<ObjectResult> Auth(string email) {
+    public async Task<ObjectResult> Auth(string email)
+    {
         try {
             if (await _userService.UserExist(email))
                 return Ok(_tokenService.CreateUserToken(await _userService.GetUser(email)));
@@ -20,7 +22,8 @@ public class AuthService : ControllerBase, IAuthService {
         }
     }
 
-    public async Task<ObjectResult> Register(User user) {
+    public async Task<ObjectResult> Register(User user)
+    {
         try {
             if (await _userService.UserExist(user.Email))
                 return Unauthorized("Почта уже зарегистрирована, войдите");

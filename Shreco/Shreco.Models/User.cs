@@ -15,8 +15,8 @@ public class User : BaseModel {
     [StringLength(30)]
     public string? Phone { get; set; }
 
-    public ICollection<Qr> QrsWhoCreated { get; set; }
-    public ICollection<Qr> QrsForWhoCreated { get; set; }
-    public ICollection<History> HistoriesWhoApplied { get; set; }
-    public ICollection<History> HistoriesWhoUsed { get; set; }
+    public ICollection<Qr> QrsWhoCreated { get; set; } = new List<Qr>();
+    public ICollection<Qr> QrsForWhoCreated { get; set; } = new List<Qr>();
+    public ICollection<History> HistoriesWhoApplied { get; set; } = new List<History>();
+    public ICollection<History> HistoriesWhoUsed { get; set; } = new List<History>();
 }
