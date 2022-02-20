@@ -22,30 +22,32 @@
                     <views:LoaderView />
                 </xct:StateView>
             </xct:StateLayout.StateViews>
-            <ScrollView>
-                <StackLayout Margin="10"
-                             Spacing="10">
-                    <Frame>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Name}"
-                                   FontSize="30" />
-                            <Image Source="settings"
-                                   HorizontalOptions="EndAndExpand"
-                                   HeightRequest="40" />
-                            <ImageButton Source="exit"
-                                         HeightRequest="40" 
-                                         Command="{Binding Exit}"
-                                         Clicked="ImageButton_Clicked"
-                                         BackgroundColor="Transparent"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame>
-                        <StackLayout>
+            <RefreshView>
+                <ScrollView>
+                    <StackLayout Margin="10"
+                                 Spacing="10">
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}"
+                                       FontSize="30" />
+                                <ImageButton Source="settings"
+                                             HorizontalOptions="EndAndExpand"
+                                             HeightRequest="35"
+                                             Command="{Binding OpenSettingsPageCommand}" />
+                                <ImageButton Source="exit"
+                                             Command="{Binding ExitCommand}"
+                                             HeightRequest="35"
+                                             BackgroundColor="Transparent" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Distributor}}">
+                            <StackLayout>
 
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-            </ScrollView>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+            </RefreshView>
             <views:QrScanButtonView />
         </Grid>
     </ContentPage.Content>

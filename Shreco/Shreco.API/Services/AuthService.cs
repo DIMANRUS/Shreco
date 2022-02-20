@@ -15,7 +15,7 @@ public class AuthService : ControllerBase, IAuthService {
     {
         try {
             if (await _userService.UserExist(email))
-                return Ok(_tokenService.CreateUserToken(await _userService.GetUser(email)));
+                return Ok(_tokenService.CreateToken(await _userService.GetUser(email)));
             return Unauthorized("Вас нет в системе, зарегистрируйтесь!");
         } catch {
             return BadRequest("Ошибка авторизации!");
@@ -29,7 +29,7 @@ public class AuthService : ControllerBase, IAuthService {
                 return Unauthorized("Почта уже зарегистрирована, войдите");
             await _userService.AddUser(user);
             await _userService.SaveChanges();
-            return Ok(_tokenService.CreateUserToken(user));
+            return Ok(_tokenService.CreateToken(user));
         } catch {
             return BadRequest("Ошибка регистрации!");
         }

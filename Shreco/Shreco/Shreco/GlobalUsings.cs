@@ -12,3 +12,7 @@ global using System.Text;
 global using System.Threading.Tasks;
 global using System.Text.Json;
 global using Shreco.Stores;
+global using Shreco.Models;
+global using Shreco.Pages;
+global using Xamarin.Forms.Xaml;
+global using ZXing.Net.Mobile.Forms;

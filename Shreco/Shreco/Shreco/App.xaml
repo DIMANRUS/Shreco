@@ -22,11 +22,18 @@
             <Setter Property="HasShadow"
                     Value="True" />
             <Setter Property="CornerRadius"
-                    Value="15" />
+                    Value="10" />
             <Setter Property="Padding"
                     Value="20" />
         </Style>
+        <Style TargetType="ImageButton">
+            <Setter Property="BackgroundColor"
+                    Value="Transparent" />
+        </Style>
         <x:String x:Key="AuthButton">AuthButton</x:String>
+        <x:Boolean x:Key="Worker">True</x:Boolean>
+        <x:Boolean x:Key="Distributor">False</x:Boolean>
         <converters:AuthStateToButtonTextConverter x:Key="AuthStateToButtonTextConverter" />
+        <converters:RoleToVisibleConverter x:Key="RoleToVisibleConverter" />
     </Application.Resources>
 </Application>

@@ -14,31 +14,33 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Text.Json"
-						  Version="6.0.1" />
-		<PackageReference Include="Xamarin.CommunityToolkit"
-						  Version="2.0.0" />
-		<PackageReference Include="Xamarin.Essentials"
-						  Version="1.7.1" />
-		<PackageReference Include="Xamarin.Forms"
-						  Version="5.0.0.2337" />
-		<PackageReference Include="ZXing.Net.Mobile.Forms"
-						  Version="3.1.0-beta2" />
+		<PackageReference Include="System.Text.Json" Version="6.0.1" />
+		<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.0" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+		<PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
+		<PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.1.0-beta2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Update="Pages\AuthPage.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Pages\ShellPage.xaml">
-			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		<EmbeddedResource Update="Pages\HomePage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\SettingsPage.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Views\LoaderView.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Views\QrScanButtonView.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Shreco.Helpers\Shreco.Helpers.csproj" />
 		<ProjectReference Include="..\..\Shreco.Models\Shreco.Models.csproj" />
 	</ItemGroup>
 </Project>

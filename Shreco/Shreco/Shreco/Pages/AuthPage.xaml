@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:clr="clr-namespace:System;assembly=mscorlib"
              x:Class="Shreco.Pages.AuthPage"
              xmlns:viewModels="clr-namespace:Shreco.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:views="clr-namespace:Shreco.Views">
+             xmlns:views="clr-namespace:Shreco.Views"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Behaviors>
-        <xct:EventToCommandBehavior Command="{Binding OnLoadPageCommand}"
+        <xct:EventToCommandBehavior Command="{Binding OnAppearing}"
                                     EventName="Appearing" />
     </ContentPage.Behaviors>
     <ContentPage.BindingContext>
@@ -43,44 +46,51 @@
                                HorizontalOptions="FillAndExpand"
                                Text="{Binding Email}" />
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 IsVisible="{Binding IsRegistration}">
-                        <Image Source="mail"
-                               HeightRequest="35" />
-                        <Entry Placeholder="Имя пользователя"
-                               Keyboard="Text"
-                               HorizontalOptions="FillAndExpand"
-                               Text="{Binding UserName}" />
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 IsVisible="{Binding IsRegistration}">
-                        <Image Source="phone"
-                               HeightRequest="35" />
-                        <Entry Placeholder="Номер телефона"
-                               Keyboard="Telephone"
-                               HorizontalOptions="FillAndExpand"
-                               Text="{Binding PhoneNumber}" />
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 IsVisible="{Binding IsRegistration}">
-                        <Image Source="address"
-                               HeightRequest="35" />
-                        <Entry Placeholder="Адрес"
-                               WidthRequest="230"
-                               Text="{Binding Address}" />
-                        <Image Source="location"
-                               HeightRequest="35">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding GetAddressLocation}" />
-                            </Image.GestureRecognizers>
-                        </Image>
+                    <StackLayout IsVisible="{Binding IsRegistration}">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="name"
+                                   HeightRequest="35" />
+                            <Entry Placeholder="Имя пользователя"
+                                   Keyboard="Text"
+                                   HorizontalOptions="FillAndExpand"
+                                   Text="{Binding UserName}" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Worker}}">
+                            <Image Source="phone"
+                                   HeightRequest="35" />
+                            <Entry Placeholder="Номер телефона"
+                                   Keyboard="Telephone"
+                                   HorizontalOptions="FillAndExpand"
+                                   Text="{Binding PhoneNumber}" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Worker}}">
+                            <Image Source="address"
+                                   HeightRequest="35" />
+                            <Entry Placeholder="Адрес"
+                                   WidthRequest="230"
+                                   Text="{Binding Address}" />
+                            <Image Source="location"
+                                   HeightRequest="35">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GetAddressLocation}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <Picker SelectedItem="{Binding PickerUserRole}" FontSize="20">
+                            <Picker.Items>
+                                <x:String>Предприниматель</x:String>
+                                <x:String>Распространитель</x:String>
+                            </Picker.Items>
+                        </Picker>
                     </StackLayout>
                     <Button Text="{Binding IsRegistration, Converter={StaticResource AuthStateToButtonTextConverter}, ConverterParameter={StaticResource AuthButton}}"
                             VerticalOptions="CenterAndExpand"
                             FontSize="16"
                             HeightRequest="40"
-                            BackgroundColor="DarkOrange" 
-                            Command="{Binding AuthCommand}"/>
+                            BackgroundColor="DarkOrange"
+                            Command="{Binding AuthCommand}" />
                     <Button Text="{Binding IsRegistration,Converter={StaticResource AuthStateToButtonTextConverter}}"
                             BackgroundColor="Transparent"
                             TextColor="Purple"
@@ -88,21 +98,6 @@
                             FontSize="12"
                             Command="{Binding ChangeAuthState}" />
                 </StackLayout>
-            </Frame>
-            <Frame Padding="6"
-                   CornerRadius="30"
-                   HorizontalOptions="End"
-                   VerticalOptions="End"
-                   Margin="10">
-                <ImageButton Source="qr"
-                             BackgroundColor="Transparent"
-                             Margin="5"
-                             HeightRequest="40">
-                    <ImageButton.Behaviors>
-                        <xct:EventToCommandBehavior EventName="Clicked"
-                                                    Command="{Binding QrScanOpen}" />
-                    </ImageButton.Behaviors>
-                </ImageButton>
             </Frame>
         </Grid>
     </ContentPage.Content>

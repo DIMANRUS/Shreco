@@ -14,4 +14,8 @@ public class TokenHelper {
         GetClaims(token).First(c => c.Type == ClaimTypes.Name).Value;
     public static string GetRole(string token) =>
         GetClaims(token).First(c => c.Type == ClaimTypes.Role).Value;
+    public static string GetStreetAddress(string token) =>
+        GetClaims(token).First(c => c.Type == ClaimTypes.StreetAddress).Value;
+    public static string GetEmail(string token) =>
+        GetClaims(token).First(c => c.Type == ClaimTypes.Email).Value;
 }

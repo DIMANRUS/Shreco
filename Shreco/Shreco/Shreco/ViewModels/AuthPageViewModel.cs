@@ -1,12 +1,10 @@
-﻿using Shreco.Models;
-
-namespace Shreco.ViewModels;
+﻿namespace Shreco.ViewModels;
 
 internal class AuthPageViewModel : BaseViewModel {
     public AuthPageViewModel()
     {
         #region Commands
-        OnLoadPageCommand = new Command(() => {
+        OnAppearing = new Command(() => {
             CurrentLayoutState = LayoutState.None;
         });
         ChangeAuthState = new Command(() => IsRegistration = !IsRegistration);
@@ -37,15 +35,16 @@ internal class AuthPageViewModel : BaseViewModel {
                 HttpResponseMessage responseSessionToken = await httpHelper.GetRequest($"/Auth/SendCode/{user.Email}");
                 if (responseSessionToken.IsSuccessStatusCode) {
                     string userCode = await Application.Current.MainPage.DisplayPromptAsync("Код", "Введите код с почты", "Ок");
-                    if (userCode != String.Empty) {
+                    if (!string.IsNullOrEmpty(userCode)) {
                         HttpResponseMessage response;
                         if (_isRegistration)
                             response = await httpHelper.PostRequest($"/Auth/Register/{userCode}", user, await responseSessionToken.Content.ReadAsStringAsync());
                         else
                             response = await httpHelper.GetRequest($"/Auth?email={user.Email}&code={userCode}", await responseSessionToken.Content.ReadAsStringAsync());
-                        if (response.IsSuccessStatusCode)
-                            await Application.Current.MainPage.DisplayAlert("Ура", await response.Content.ReadAsStringAsync(), "Закрыть");
-                        else
+                        if (response.IsSuccessStatusCode) {
+                            await UserDataStore.Set(DatasNames.Token, await response.Content.ReadAsStringAsync());
+                            await Application.Current.MainPage.Navigation.PushModalAsync(new HomePage(), true);
+                        } else
                             await Application.Current.MainPage.DisplayAlert("Ошибка", await response.Content.ReadAsStringAsync(), "Закрыть");
                     } else {
                         await Application.Current.MainPage.DisplayAlert("Ошибка", "Пустое поле", "Закрыть");
@@ -63,8 +62,16 @@ internal class AuthPageViewModel : BaseViewModel {
     #region Private Fields
     private bool _isRegistration;
     private string _address;
+    private string _pickerUserRole = "Предприниматель";
     #endregion
     #region Properties
+    public string PickerUserRole {
+        get => _pickerUserRole;
+        set {
+            _pickerUserRole = value;
+            UserRole = value == "Предприниматель";
+        }
+    }
     public bool IsRegistration {
         get => _isRegistration;
         private set => Set(value, ref _isRegistration);
