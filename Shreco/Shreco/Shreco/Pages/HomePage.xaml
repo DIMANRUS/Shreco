@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shreco.Pages.HomePage"
+             xmlns:viewmodels="clr-namespace:Shreco.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:views="clr-namespace:Shreco.Views">
+    <ContentPage.BindingContext>
+        <viewmodels:HomePageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing"
+                                    Command="{Binding OnAppearing}" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <Grid xct:StateLayout.CurrentState="{Binding CurrentLayoutState}"
+              xct:StateLayout.AnimateStateChanges="true">
+            <xct:StateLayout.StateViews>
+                <xct:StateView StateKey="Loading"
+                               VerticalOptions="Center">
+                    <views:LoaderView />
+                </xct:StateView>
+            </xct:StateLayout.StateViews>
+            <ScrollView>
+                <StackLayout Margin="10"
+                             Spacing="10">
+                    <Frame>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}"
+                                   FontSize="30" />
+                            <Image Source="settings"
+                                   HorizontalOptions="EndAndExpand"
+                                   HeightRequest="40" />
+                            <ImageButton Source="exit"
+                                         HeightRequest="40" 
+                                         Command="{Binding Exit}"
+                                         Clicked="ImageButton_Clicked"
+                                         BackgroundColor="Transparent"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame>
+                        <StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <views:QrScanButtonView />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
