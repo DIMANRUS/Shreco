@@ -26,10 +26,10 @@
             </xct:StateLayout.StateViews>
             <StackLayout Margin="10">
                 <Label Text="Добро пожаловать!"
-                       FontSize="40"
+                       FontSize="30"
                        HorizontalTextAlignment="Center" />
                 <Label Text="Делитесь.Зарабатывайте.Рекомендуйте."
-                       FontSize="Large"
+                       FontSize="15"
                        HorizontalTextAlignment="Center" />
             </StackLayout>
             <Frame HasShadow="True"
