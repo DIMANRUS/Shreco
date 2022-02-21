@@ -14,7 +14,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <LangVersion>10</LangVersion>
     <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -35,8 +34,6 @@
     <MandroidI18n />
     <LangVersion>10</LangVersion>
     <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidSupportedAbis>
-    </AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,8 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shreco\Shreco.csproj">
-      <Project>{EC317A31-1863-46D2-931D-A1FC7EBCE117}</Project>
+      <Project>{BE9A87A1-8043-4D8C-BD4A-9B180769A59E}</Project>
       <Name>Shreco</Name>
+      <ReferenceSourceTarget></ReferenceSourceTarget>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

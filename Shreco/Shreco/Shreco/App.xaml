@@ -17,6 +17,7 @@
                     Value="Bold" />
             <Setter Property="CornerRadius"
                     Value="15" />
+            <Setter Property="TextColor" Value="White"/>
         </Style>
         <Style TargetType="{x:Type Frame}">
             <Setter Property="HasShadow"
@@ -25,10 +26,19 @@
                     Value="10" />
             <Setter Property="Padding"
                     Value="20" />
+            <Setter Property="BackgroundColor" Value="White"/>
         </Style>
-        <Style TargetType="ImageButton">
+        <Style TargetType="{x:Type ImageButton}">
             <Setter Property="BackgroundColor"
                     Value="Transparent" />
+        </Style>
+        <Style TargetType="{x:Type Entry}">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+                <Style TargetType="{x:Type Picker}">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="Black"/>
         </Style>
         <x:String x:Key="AuthButton">AuthButton</x:String>
         <x:Boolean x:Key="Worker">True</x:Boolean>
