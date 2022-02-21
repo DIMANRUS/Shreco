@@ -16,3 +16,5 @@ global using Shreco.Models;
 global using Shreco.Pages;
 global using Xamarin.Forms.Xaml;
 global using ZXing.Net.Mobile.Forms;
+global using System.ComponentModel;
+global using System.Runtime.CompilerServices;

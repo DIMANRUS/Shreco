@@ -40,9 +40,20 @@
                                              BackgroundColor="Transparent" />
                             </StackLayout>
                         </Frame>
-                        <Frame IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Distributor}}">
+                        <Frame>
                             <StackLayout>
-
+                                <StackLayout>
+                                    <Image Source="money" />
+                                    <Label Text="Qr коды" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <Frame>
+                            <StackLayout>
+                                <StackLayout>
+                                    <Image Source="history" />
+                                    <Label Text="История" />
+                                </StackLayout>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
