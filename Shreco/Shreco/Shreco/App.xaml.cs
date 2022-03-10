@@ -7,9 +7,6 @@ public partial class App {
 
     protected override async void OnStart()
     {
-        if (string.IsNullOrEmpty(await UserDataStore.Get(DatasNames.Token)))
-            MainPage = new NavigationPage(new AuthPage());
-        else
-            MainPage = new NavigationPage(new HomePage());
+        MainPage = string.IsNullOrEmpty(await UserDataStore.Get(DatasNames.Token)) ? new NavigationPage(new AuthPage()) : new NavigationPage(new HomePage());
     }
 }

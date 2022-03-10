@@ -9,11 +9,11 @@ public partial class QrScanButtonView : ContentView {
     {
         var scanPage = new ZXingScannerPage();
         await Application.Current.MainPage.Navigation.PushModalAsync(scanPage, true);
-        scanPage.OnScanResult += (result) => {
+        scanPage.OnScanResult += async (result) => {
             scanPage.IsScanning = false;
             Device.BeginInvokeOnMainThread(async () => {
+                OnScanResult?.Invoke(result.ToString());
                 await Application.Current.MainPage.Navigation.PopModalAsync();
-                OnScanResult?.Invoke(result.Text);
             });
         };
     }

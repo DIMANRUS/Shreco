@@ -52,8 +52,10 @@
     <AndroidLinkTool>r8</AndroidLinkTool>
     <LangVersion>10</LangVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidLinkSkip>Shreco</AndroidLinkSkip>
+    <MandroidI18n />
+    <AndroidSupportedAbis>armeabi-v7a;x86_64;arm64-v8a</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -84,7 +86,8 @@
     <ProjectReference Include="..\Shreco\Shreco.csproj">
       <Project>{BE9A87A1-8043-4D8C-BD4A-9B180769A59E}</Project>
       <Name>Shreco</Name>
-      <ReferenceSourceTarget></ReferenceSourceTarget>
+      <ReferenceSourceTarget>
+      </ReferenceSourceTarget>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\notfound.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

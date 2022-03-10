@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Internals;
+using Xamarin.Forms.Xaml;
 
 namespace Shreco.Pages;
 

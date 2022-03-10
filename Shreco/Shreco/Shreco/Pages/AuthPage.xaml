@@ -70,7 +70,7 @@
                                    HeightRequest="35" />
                             <Entry Placeholder="Адрес"
                                    WidthRequest="230"
-                                   Text="{Binding Address}" />
+                                   Text="{Binding Address, Mode=TwoWay}" />
                             <Image Source="location"
                                    HeightRequest="35">
                                 <Image.GestureRecognizers>
@@ -78,10 +78,11 @@
                                 </Image.GestureRecognizers>
                             </Image>
                         </StackLayout>
-                        <Picker SelectedItem="{Binding PickerUserRole}" FontSize="20">
+                        <Picker SelectedItem="{Binding PickerUserRole}"
+                                FontSize="20">
                             <Picker.Items>
                                 <x:String>Предприниматель</x:String>
-                                <x:String>Распространитель</x:String>
+                                <x:String>Распространитель/Клиент</x:String>
                             </Picker.Items>
                         </Picker>
                     </StackLayout>

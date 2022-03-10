@@ -39,19 +39,7 @@ namespace Shreco.API.Migrations
                     b.Property<int>("QrId")
                         .HasColumnType("int");
 
-                    b.Property<int>("WhoAppliedId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WhoUsedId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("QrId");
-
-                    b.HasIndex("WhoAppliedId");
-
-                    b.HasIndex("WhoUsedId");
 
                     b.ToTable("Histories");
                 });
@@ -64,22 +52,51 @@ namespace Shreco.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ForWhoCreatedId")
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DistributorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Percent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PercentForClient")
                         .HasColumnType("int");
 
                     b.Property<int>("QrType")
                         .HasColumnType("int");
 
-                    b.Property<int>("WhoCreatedId")
+                    b.Property<int>("WorkerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ForWhoCreatedId");
-
-                    b.HasIndex("WhoCreatedId");
-
                     b.ToTable("Qrs");
+                });
+
+            modelBuilder.Entity("Shreco.Models.Session", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("Shreco.Models.User", b =>
@@ -99,6 +116,9 @@ namespace Shreco.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<double>("Money")
+                        .HasColumnType("float");
+
                     b.Property<string>("NameIdentifer")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -111,63 +131,6 @@ namespace Shreco.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Shreco.Models.History", b =>
-                {
-                    b.HasOne("Shreco.Models.Qr", "Qr")
-                        .WithMany()
-                        .HasForeignKey("QrId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Shreco.Models.User", "WhoApplied")
-                        .WithMany("HistoriesWhoApplied")
-                        .HasForeignKey("WhoAppliedId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Shreco.Models.User", "WhoUsed")
-                        .WithMany("HistoriesWhoUsed")
-                        .HasForeignKey("WhoUsedId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Qr");
-
-                    b.Navigation("WhoApplied");
-
-                    b.Navigation("WhoUsed");
-                });
-
-            modelBuilder.Entity("Shreco.Models.Qr", b =>
-                {
-                    b.HasOne("Shreco.Models.User", "ForWhoCreated")
-                        .WithMany("QrsForWhoCreated")
-                        .HasForeignKey("ForWhoCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Shreco.Models.User", "WhoCreated")
-                        .WithMany("QrsWhoCreated")
-                        .HasForeignKey("WhoCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("ForWhoCreated");
-
-                    b.Navigation("WhoCreated");
-                });
-
-            modelBuilder.Entity("Shreco.Models.User", b =>
-                {
-                    b.Navigation("HistoriesWhoApplied");
-
-                    b.Navigation("HistoriesWhoUsed");
-
-                    b.Navigation("QrsForWhoCreated");
-
-                    b.Navigation("QrsWhoCreated");
                 });
 #pragma warning restore 612, 618
         }

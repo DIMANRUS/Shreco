@@ -1,4 +1,6 @@
-﻿namespace Shreco.ViewModels;
+﻿using Xamarin.Forms.Internals;
+
+namespace Shreco.ViewModels;
 
 internal class AuthPageViewModel : BaseViewModel {
     public AuthPageViewModel()
@@ -17,6 +19,7 @@ internal class AuthPageViewModel : BaseViewModel {
                 if (address != null)
                     Address = address.CountryName + "," + address.Locality + "," + address.Thoroughfare + "," +
                               address.SubThoroughfare;
+                OnNotifyPropertyChanged(nameof(Address));
             } catch {
                 //Ignored
             }
@@ -24,8 +27,8 @@ internal class AuthPageViewModel : BaseViewModel {
         });
         AuthCommand = new AsyncCommand(async () => {
             CurrentLayoutState = LayoutState.Loading;
-            try {
-                User user = new() {
+        try {
+            User user = new() {
                     Email = Email,
                     Adress = Address,
                     Phone = PhoneNumber,
@@ -52,8 +55,8 @@ internal class AuthPageViewModel : BaseViewModel {
                 } else {
                     await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка сервера", "Закрыть");
                 }
-            } catch {
-                await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка отправки запроса", "Закрыть");
+            } catch (Exception ex) {
+                await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка отправки запроса " + ex.Message, "Закрыть");
             }
             CurrentLayoutState = LayoutState.None;
         });
@@ -61,7 +64,6 @@ internal class AuthPageViewModel : BaseViewModel {
     }
     #region Private Fields
     private bool _isRegistration;
-    private string _address;
     private string _pickerUserRole = "Предприниматель";
     #endregion
     #region Properties
@@ -76,10 +78,7 @@ internal class AuthPageViewModel : BaseViewModel {
         get => _isRegistration;
         private set => Set(value, ref _isRegistration);
     }
-    public string Address {
-        get => _address;
-        private set => Set(value, ref _address);
-    }
+    public string Address { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
     public string UserName { get; set; } = string.Empty;

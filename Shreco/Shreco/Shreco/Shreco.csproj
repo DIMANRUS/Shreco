@@ -28,6 +28,9 @@
 		<EmbeddedResource Update="Pages\HomePage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Pages\QrView.xaml">
+		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Pages\SettingsPage.xaml">
 		  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</EmbeddedResource>
@@ -42,5 +45,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shreco.Helpers\Shreco.Helpers.csproj" />
 		<ProjectReference Include="..\..\Shreco.Models\Shreco.Models.csproj" />
+		<ProjectReference Include="..\..\Shreco.Responses\Shreco.Responses.csproj" />
 	</ItemGroup>
 </Project>

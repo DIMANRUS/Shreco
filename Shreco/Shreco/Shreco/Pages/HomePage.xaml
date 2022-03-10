@@ -5,7 +5,11 @@
              xmlns:viewmodels="clr-namespace:Shreco.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              NavigationPage.HasNavigationBar="False"
-             xmlns:views="clr-namespace:Shreco.Views">
+             Title="HomePage"
+             xmlns:views="clr-namespace:Shreco.Views"
+             xmlns:models="clr-namespace:Shreco.Models;assembly=Shreco.Models"
+             xmlns:responses="clr-namespace:Shreco.Responses;assembly=Shreco.Responses"
+             x:Name="Root">
     <ContentPage.BindingContext>
         <viewmodels:HomePageViewModel />
     </ContentPage.BindingContext>
@@ -22,10 +26,15 @@
                     <views:LoaderView />
                 </xct:StateView>
             </xct:StateLayout.StateViews>
-            <RefreshView>
+            <RefreshView IsRefreshing="{Binding IsRefreshing}">
+                <RefreshView.Behaviors>
+                    <xct:EventToCommandBehavior EventName="Refreshing"
+                                                Command="{Binding LoadDataCommand}" />
+                </RefreshView.Behaviors>
                 <ScrollView>
                     <StackLayout Margin="10"
-                                 Spacing="10">
+                                 Spacing="10"
+                                 Padding="0,0,0,60">
                         <Frame>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}"
@@ -42,24 +51,269 @@
                         </Frame>
                         <Frame>
                             <StackLayout>
-                                <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
                                     <Image Source="money" />
-                                    <Label Text="Qr коды" />
+                                    <Label Text="Qr коды"
+                                           FontSize="18" />
                                 </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding DistributorQrs}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="responses:QrWithUserResponse">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding User.NameIdentifer}" />
+                                                <Image Source="qr.png"
+                                                       HeightRequest="35"
+                                                       HorizontalOptions="EndAndExpand">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ViewQrCommand, Source={x:Reference Name=Root}}"
+                                                                              CommandParameter="{Binding Qr.Id}" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="Спросите QR код у предпринимателя, надмите на кнопку в нижнем углу, отсканируйте и начинайте зарабатывать."
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
                             </StackLayout>
                         </Frame>
                         <Frame>
                             <StackLayout>
-                                <StackLayout>
-                                    <Image Source="history" />
-                                    <Label Text="История" />
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
+                                    <Image Source="clock" />
+                                    <Label Text="Клиенты"
+                                           FontSize="18" />
                                 </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding Clients}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="responses:HistoryWithQrUserResponse">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding User.NameIdentifer}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="Список клиентов, которые отсканировали ваш Qr код дистрибьютора."
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                        <Frame IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Worker}}">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
+                                    <Image Source="qr" />
+                                    <Label Text="Qr коды для распространителей"
+                                           FontSize="18" />
+                                </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding WorkerQrs}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Qr">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Percent}" />
+                                                <Label Text="{Binding PercentForClient}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="Тут находятся Qr коды, которые вы выпускали для регистрации распространителя, если этот код не был ещё использован, он будет тут, также вы можете их деактивировать."
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                        <Frame IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Worker}}">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
+                                    <Image Source="people" />
+                                    <Label Text="Распространители"
+                                           FontSize="18" />
+                                    <ImageButton Source="Add"
+                                                 HorizontalOptions="EndAndExpand"
+                                                 Command="{Binding AddDistributorCommand}" />
+                                </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding Distributors}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="responses:QrWithUserResponse">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding User.NameIdentifer}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="В этом блоке вы сможете посомтреть всех своих распрсотранителей, которые зарегситрировались через ваш Qr код."
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                        <Frame IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Distributor}}">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
+                                    <Image Source="people" />
+                                    <Label Text="Распространители"
+                                           FontSize="18" />
+                                </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding Distributors}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="responses:QrWithUserResponse">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding User.NameIdentifer}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="В этом блоке вы сможете посомтреть всех своих распрсотранителей, у которых вы сканировали Qr. Тут Qr коды, которые нудно показывать поставщику услуг."
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                        <Frame IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Worker}}">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
+                                    <Image Source="clock" />
+                                    <Label Text="История распространителей"
+                                           FontSize="18" />
+                                </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding HistoryDistributors}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="responses:HistoryWithQrUserResponse">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Client.NameIdentifer}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="Тут представлена информациия об применении Qr кода клиентом, который был выпущен вашим распространителем."
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                        <Frame>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
+                                    <Image Source="clock" />
+                                    <Label Text="История ваших клиентов"
+                                           FontSize="18" />
+                                </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding HistoryClients}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="responses:HistoryWithQrUserResponse">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Client.NameIdentifer}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="Тут представлена история ваших Qr кодов, которые вы распроняете, как распространитель."
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+                        <Frame>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HeightRequest="20">
+                                    <Image Source="clock" />
+                                    <Label Text="История"
+                                           FontSize="18" />
+                                </StackLayout>
+                                <CollectionView HeightRequest="250"
+                                                ItemsSource="{Binding HistoryClients}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="responses:HistoryWithQrUserResponse">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Client.NameIdentifer}" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Image Source="notfound"
+                                                   HeightRequest="70" />
+                                            <Label Text="Тут представлена история о применении вами Qr кодов распространителей"
+                                                   FontSize="20"
+                                                   HorizontalTextAlignment="Center"
+                                                   Margin="30,0,30,0" />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
                 </ScrollView>
             </RefreshView>
-            <views:QrScanButtonView />
+            <views:QrScanButtonView OnScanResult="QrScanButtonView_OnScanResult" />
+            <!--<Frame HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="20">
+                <StackLayout>
+                    <Label Text="Qr код" />
+                    <Label Text="Это Qr код можно также повторно получить в блоке 'Qr коды для распространителей'" />
+                    <Button Text="Закрыть" />
+                </StackLayout>
+            </Frame>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

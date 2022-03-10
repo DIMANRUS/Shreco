@@ -18,3 +18,7 @@ global using Xamarin.Forms.Xaml;
 global using ZXing.Net.Mobile.Forms;
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;
+global using ZXing;
+global using ZXing.QrCode;
+global using System.Collections.Generic;
+global using System.Text.Json.Serialization;

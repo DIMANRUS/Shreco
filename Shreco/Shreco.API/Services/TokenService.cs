@@ -12,9 +12,8 @@ public class TokenService : ITokenService {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Email, user.Email),
             new Claim(ClaimTypes.StreetAddress, user.Adress ?? string.Empty),
-            new Claim(ClaimTypes.Role, (!string.IsNullOrEmpty(user.Adress)).ToString()) //Работник = true, распространитель = false
+            new Claim(ClaimTypes.Role, (!string.IsNullOrEmpty(user.Adress)).ToString()) //Работник = true, распространитель/клиент = false
         };
-
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
         var token = new JwtSecurityToken(
             _configuration["JwtSettings:Issuer"],
@@ -41,14 +40,13 @@ public class TokenService : ITokenService {
     {
         var claims = new[] {
             new Claim(ClaimTypes.NameIdentifier, qr.Id.ToString()),
-            new Claim(ClaimTypes.Name, qr.WhoCreated.Id.ToString()),
             new Claim(ClaimTypes.Role, qr.QrType.ToString())
         };
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:QrKey"]));
         var token = new JwtSecurityToken(
             _configuration["JwtSettings:Issuer"],
             _configuration["JwtSettings:Audience"],
-            expires: DateTime.Now.AddMinutes(10),
+            expires: DateTime.Now.AddYears(100),
             claims: claims,
             signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
         return new JwtSecurityTokenHandler().WriteToken(token);

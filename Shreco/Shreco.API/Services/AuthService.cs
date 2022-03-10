@@ -14,8 +14,8 @@ public class AuthService : ControllerBase, IAuthService {
     public async Task<ObjectResult> Auth(string email)
     {
         try {
-            if (await _userService.UserExist(email))
-                return Ok(_tokenService.CreateToken(await _userService.GetUser(email)));
+            if (await _userService.GetUserByEmail(email) != null)
+                return Ok(_tokenService.CreateToken(await _userService.GetUserByEmail(email)));
             return Unauthorized("Вас нет в системе, зарегистрируйтесь!");
         } catch {
             return BadRequest("Ошибка авторизации!");
@@ -24,14 +24,13 @@ public class AuthService : ControllerBase, IAuthService {
 
     public async Task<ObjectResult> Register(User user)
     {
-        try {
-            if (await _userService.UserExist(user.Email))
-                return Unauthorized("Почта уже зарегистрирована, войдите");
-            await _userService.AddUser(user);
-            await _userService.SaveChanges();
-            return Ok(_tokenService.CreateToken(user));
-        } catch {
-            return BadRequest("Ошибка регистрации!");
-        }
+        //try {
+        if (await _userService.GetUserByEmail(user.Email) != null)
+            return Unauthorized("Почта уже зарегистрирована, войдите");
+        await _userService.AddUsers(user);
+        return Ok(_tokenService.CreateToken(user));
+        //} catch {
+        //    return BadRequest("Ошибка регистрации!");
+        //}
     }
 }

@@ -1,12 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => {
+    //options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+
+});
 #if DEBUG
 builder.Services.AddDbContext<AppContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShrecoLocalDatabase"), b => b.MigrationsAssembly("Shreco.API")));
 #else
 builder.Services.AddDbContext<AppContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShrecoDatabase"), b => b.MigrationsAssembly("Shreco.API")));
 #endif
-
-builder.Services.AddDbContext<LiteContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteDatabase")));
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -17,7 +18,8 @@ builder.Services.AddAuthentication(options => {
         ValidateIssuerSigningKey = true,
         ValidAudience = builder.Configuration["JwtSettings:Audience"],
         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"])),
+        RequireExpirationTime = false
     };
 }).AddJwtBearer("SessionJWT", options => {
     options.TokenValidationParameters = new TokenValidationParameters {
@@ -44,6 +46,7 @@ builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICodeService, CodeService>();
 builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddTransient<IQrService, QrService>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
