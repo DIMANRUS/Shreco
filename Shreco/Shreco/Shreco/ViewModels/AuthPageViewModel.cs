@@ -27,36 +27,55 @@ internal class AuthPageViewModel : BaseViewModel {
         });
         AuthCommand = new AsyncCommand(async () => {
             CurrentLayoutState = LayoutState.Loading;
-        try {
-            User user = new() {
-                    Email = Email,
-                    Adress = Address,
-                    Phone = PhoneNumber,
-                    NameIdentifer = UserName
-                };
-                using HttpHelper httpHelper = new();
-                HttpResponseMessage responseSessionToken = await httpHelper.GetRequest($"/Auth/SendCode/{user.Email}");
-                if (responseSessionToken.IsSuccessStatusCode) {
-                    string userCode = await Application.Current.MainPage.DisplayPromptAsync("Код", "Введите код с почты", "Ок");
-                    if (!string.IsNullOrEmpty(userCode)) {
-                        HttpResponseMessage response;
-                        if (_isRegistration)
-                            response = await httpHelper.PostRequest($"/Auth/Register/{userCode}", user, await responseSessionToken.Content.ReadAsStringAsync());
+            if (!string.IsNullOrEmpty(Email))
+            {
+                try
+                {
+                    User user = new()
+                    {
+                        Email = Email,
+                        Adress = Address,
+                        Phone = PhoneNumber,
+                        NameIdentifer = UserName
+                    };
+                    using HttpHelper httpHelper = new();
+                    HttpResponseMessage responseSessionToken = await httpHelper.GetRequest($"/Auth/SendCode/{user.Email}");
+                    if (responseSessionToken.IsSuccessStatusCode)
+                    {
+                        string userCode = await Application.Current.MainPage.DisplayPromptAsync("Код", "Введите код с почты", "Ок");
+                        if (!string.IsNullOrEmpty(userCode))
+                        {
+                            HttpResponseMessage response;
+                            if (_isRegistration)
+                                response = await httpHelper.PostRequest($"/Auth/Register/{userCode}", user, await responseSessionToken.Content.ReadAsStringAsync());
+                            else
+                                response = await httpHelper.GetRequest($"/Auth?email={user.Email}&code={userCode}", await responseSessionToken.Content.ReadAsStringAsync());
+                            if (response.IsSuccessStatusCode)
+                            {
+                                await UserDataStore.Set(DatasNames.Token, await response.Content.ReadAsStringAsync());
+                                await Application.Current.MainPage.Navigation.PushModalAsync(new HomePage(), true);
+                            }
+                            else
+                                await Application.Current.MainPage.DisplayAlert("Ошибка", await response.Content.ReadAsStringAsync(), "Закрыть");
+                        }
                         else
-                            response = await httpHelper.GetRequest($"/Auth?email={user.Email}&code={userCode}", await responseSessionToken.Content.ReadAsStringAsync());
-                        if (response.IsSuccessStatusCode) {
-                            await UserDataStore.Set(DatasNames.Token, await response.Content.ReadAsStringAsync());
-                            await Application.Current.MainPage.Navigation.PushModalAsync(new HomePage(), true);
-                        } else
-                            await Application.Current.MainPage.DisplayAlert("Ошибка", await response.Content.ReadAsStringAsync(), "Закрыть");
-                    } else {
-                        await Application.Current.MainPage.DisplayAlert("Ошибка", "Пустое поле", "Закрыть");
+                        {
+                            await Application.Current.MainPage.DisplayAlert("Ошибка", "Пустое поле", "Закрыть");
+                        }
                     }
-                } else {
-                    await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка сервера", "Закрыть");
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка сервера", "Закрыть");
+                    }
                 }
-            } catch (Exception ex) {
-                await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка отправки запроса " + ex.Message, "Закрыть");
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка отправки запроса " + ex.Message, "Закрыть");
+                }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Ошибка", "Заполните поля", "Закрыть");
             }
             CurrentLayoutState = LayoutState.None;
         });
