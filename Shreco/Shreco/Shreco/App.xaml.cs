@@ -7,6 +7,9 @@ public partial class App {
 
     protected override async void OnStart()
     {
-        MainPage = string.IsNullOrEmpty(await UserDataStore.Get(DatasNames.Token)) ? new NavigationPage(new AuthPage()) : new NavigationPage(new HomePage());
+        NavigationPage navigationPage = new(string.IsNullOrEmpty(await UserDataStore.Get(DatasNames.Token) )? new AuthPage() : new HomePage()) {
+            BarBackgroundColor = Color.Goldenrod
+        };
+        MainPage = navigationPage;
     }
 }

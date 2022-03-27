@@ -1,9 +1,9 @@
 ﻿namespace Shreco.Pages;
+
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class HomePage {
     public HomePage() =>
         InitializeComponent();
-
     private async void QrScanButtonView_OnScanResult(string result)
     {
         using HttpHelper httpHelper = new();
@@ -11,23 +11,34 @@ public partial class HomePage {
         //string userId = TokenHelper.GetNameIdentifer(userToken);
         //string role = TokenHelper.GetRole(result);
         QrType qrType = (QrType)Enum.Parse(typeof(QrType), TokenHelper.GetRole(result));
+        HttpResponseMessage httpResult = null;
         switch (qrType) {
             case QrType.Registration:
-                HttpResponseMessage httpResult = await httpHelper.GetRequest($"/Qr/AddWorkerToDistributor?qrId={TokenHelper.GetNameIdentifer(result)}");
-                if (!httpResult.IsSuccessStatusCode)
-                    MainThread.BeginInvokeOnMainThread(async () => await DisplayAlert("Ошибка", "Qr не добавлен", "Закрыть"));
+                httpResult = await httpHelper.GetRequest($"/Qr/AddWorkerToDistributor?qrId={TokenHelper.GetNameIdentifer(result)}");
                 break;
             case QrType.Distibutor:
-                HttpResponseMessage httpResponse = await httpHelper.GetRequest($"/Qr/AddDIstributorToClient?qrId={TokenHelper.GetNameIdentifer(result)}");
-                if (!httpResponse.IsSuccessStatusCode)
-                    MainThread.BeginInvokeOnMainThread(async () => await DisplayAlert("Ошибка", "Qr не добавлен", "Закрыть"));
+                httpResult = await httpHelper.GetRequest($"/Qr/AddDistributorToClient?qrId={TokenHelper.GetNameIdentifer(result)}");
                 break;
             case QrType.Client:
-
+                int price = int.Parse(await DisplayPromptAsync("", ""));
+                if (price > 0) {
+                    ClientQrAfterScaningRequest request = new() {
+                        QrId = int.Parse(TokenHelper.GetNameIdentifer(result)),
+                        Price = price
+                    };
+                    httpResult = await httpHelper.PostRequest("/Qr/WorkerFromQrCLient", request);
+                }
+                else {
+                    await DisplayAlert("Ошибка", "Вы ввели отрицательное число", "Закрыть");
+                }
                 break;
             default:
                 await DisplayAlert("Ошибка", "Qr код недействителен", "Закрыть");
                 break;
         }
+        if (httpResult is {IsSuccessStatusCode: false})
+            MainThread.BeginInvokeOnMainThread(ErrorPopup);
     }
+    private async void ErrorPopup() =>
+        await DisplayAlert("Ошибка", "Qr не добавлен", "Закрыть");
 }

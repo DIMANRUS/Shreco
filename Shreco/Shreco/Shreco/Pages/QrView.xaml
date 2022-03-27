@@ -5,12 +5,8 @@
              x:Class="Shreco.Pages.QrView"
              Title="QR-Code">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame Margin="20">
                 <forms:ZXingBarcodeImageView x:Name="qrView"
                                              BarcodeFormat="QR_CODE"
-                                             HeightRequest="300" />
-            </Frame>
-        </StackLayout>
+                                             HeightRequest="300"/>
     </ContentPage.Content>
 </ContentPage>

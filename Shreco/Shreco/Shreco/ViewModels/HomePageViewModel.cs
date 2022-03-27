@@ -1,6 +1,7 @@
 ﻿using Shreco.Responses;
 
 namespace Shreco.ViewModels;
+
 internal class HomePageViewModel : BaseViewModel {
     private string _token;
     public HomePageViewModel()
@@ -20,8 +21,8 @@ internal class HomePageViewModel : BaseViewModel {
             UserDataStore.Clear();
             await Application.Current.MainPage.Navigation.PushModalAsync(new AuthPage());
         });
-        OpenSettingsPageCommand = new AsyncCommand(async () =>
-            MainThread.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PushAsync(new SettingsPage())));
+        OpenSettingsPageCommand = new AsyncCommand(async() =>
+            await Application.Current.MainPage.Navigation.PushAsync(new SettingsPage()));
         AddDistributorCommand = new AsyncCommand(async () => {
             HttpResponseMessage httpResponseMessage = null;
             try {
@@ -44,12 +45,11 @@ internal class HomePageViewModel : BaseViewModel {
                                 new QrView(await httpResponseMessage.Content.ReadAsStringAsync())));
                     else
                         throw new Exception();
-                    CurrentLayoutState = LayoutState.None;
                 }
             } catch {
+                CurrentLayoutState = LayoutState.None;
                 await Application.Current.MainPage.DisplayAlert("Ошибка", await httpResponseMessage?.Content.ReadAsStringAsync(),
                     "Закрыть");
-
             }
             CurrentLayoutState = LayoutState.None;
         });
@@ -59,10 +59,26 @@ internal class HomePageViewModel : BaseViewModel {
             HttpResponseMessage httpResponseMessage = null;
             try {
                 using HttpHelper httpHelper = new();
-                HttpResponseMessage response = await httpHelper.GetRequest($"Qr/GetQrToken?qrId={id}");
-                if (response.IsSuccessStatusCode)
+                httpResponseMessage = await httpHelper.GetRequest($"Qr/GetQrToken?qrId={id}");
+                if (httpResponseMessage.IsSuccessStatusCode)
                     await Application.Current.MainPage.Navigation.PushAsync(
-                        new QrView(await response.Content.ReadAsStringAsync()));
+                        new QrView(await httpResponseMessage.Content.ReadAsStringAsync()));
+                else
+                    throw new Exception();
+            } catch {
+                CurrentLayoutState = LayoutState.None;
+                await Application.Current.MainPage.DisplayAlert("Ошибка", await httpResponseMessage.Content.ReadAsStringAsync(),
+                    "Закрыть");
+            }
+        });
+        RemoveQrCommand = new AsyncCommand<int>(async (id) => {
+            CurrentLayoutState = LayoutState.Loading;
+            HttpResponseMessage httpResponseMessage = null;
+            try {
+                using HttpHelper httpHelper = new();
+                httpResponseMessage = await httpHelper.DeleteRequest($"Qr?qrId={id}");
+                if (httpResponseMessage.IsSuccessStatusCode)
+                    await LoadData();
                 else
                     throw new Exception();
             } catch {
@@ -77,27 +93,27 @@ internal class HomePageViewModel : BaseViewModel {
         CurrentLayoutState = LayoutState.Loading;
         try {
             using HttpHelper httpHelper = new();
-            HttpResponseMessage httpResponse = await httpHelper.GetRequest("/User/GetDistributorQrs");
-            if (httpResponse.IsSuccessStatusCode)
-                DistributorQrs = await JsonSerializer.DeserializeAsync<IEnumerable<QrWithUserResponse>>(await httpResponse.Content.ReadAsStreamAsync());
-            HttpResponseMessage clientsResult = await httpHelper.GetRequest("/User/GetClients");
-            if (clientsResult.IsSuccessStatusCode)
-                WorkerQrs = await JsonSerializer.DeserializeAsync<IEnumerable<Qr>>(await clientsResult.Content.ReadAsStreamAsync());
-            HttpResponseMessage workerQrsResult = await httpHelper.GetRequest("/User/GetWorkerQrs");
-            if (workerQrsResult.IsSuccessStatusCode)
-                WorkerQrs = await JsonSerializer.DeserializeAsync<IEnumerable<Qr>>(await workerQrsResult.Content.ReadAsStreamAsync());
-            HttpResponseMessage distributorsResult = await httpHelper.GetRequest(bool.Parse(TokenHelper.GetRole(_token)) ? "/User/GetDistributorsWorker" : "/User/GetDistributorsClient");
-            if (distributorsResult.IsSuccessStatusCode)
-                Distributors = await JsonSerializer.DeserializeAsync<IEnumerable<QrWithUserResponse>>(await distributorsResult.Content.ReadAsStreamAsync());
-            HttpResponseMessage historyDistributorsResult = await httpHelper.GetRequest("/User/GetHistoryDistributors");
-            if (historyDistributorsResult.IsSuccessStatusCode)
-                HistoryDistributors = await JsonSerializer.DeserializeAsync<IEnumerable<HistoryWithQrUserResponse>>(await historyDistributorsResult.Content.ReadAsStreamAsync());
-            HttpResponseMessage historyClientsResult = await httpHelper.GetRequest("/User/GetHistoryClients");
-            if (historyClientsResult.IsSuccessStatusCode)
-                HistoryClients = await JsonSerializer.DeserializeAsync<IEnumerable<HistoryWithQrUserResponse>>(await historyClientsResult.Content.ReadAsStreamAsync());
-            HttpResponseMessage historyUserQrAppiedResult = await httpHelper.GetRequest("/User/GetHistoryUserQrApplied");
-            if (historyUserQrAppiedResult.IsSuccessStatusCode)
-                HistoryUserQrApplied = await JsonSerializer.DeserializeAsync<IEnumerable<HistoryWithQrUserResponse>>(await historyUserQrAppiedResult.Content.ReadAsStreamAsync());
+            HttpResponseMessage responseMessage = await httpHelper.GetRequest("/User/GetDistributorQrs");
+            if (responseMessage.IsSuccessStatusCode)
+                DistributorQrs = await JsonSerializer.DeserializeAsync<IEnumerable<QrWithUserResponse>>(await responseMessage.Content.ReadAsStreamAsync());
+            responseMessage = await httpHelper.GetRequest("/User/GetClients");
+            if (responseMessage.IsSuccessStatusCode)
+                WorkerQrs = await JsonSerializer.DeserializeAsync<IEnumerable<Qr>>(await responseMessage.Content.ReadAsStreamAsync());
+            responseMessage = await httpHelper.GetRequest("/User/GetWorkerQrs");
+            if (responseMessage.IsSuccessStatusCode)
+                WorkerQrs = await JsonSerializer.DeserializeAsync<IEnumerable<Qr>>(await responseMessage.Content.ReadAsStreamAsync());
+            responseMessage = await httpHelper.GetRequest(bool.Parse(TokenHelper.GetRole(_token)) ? "/User/GetDistributorsWorker" : "/User/GetDistributorsClient");
+            if (responseMessage.IsSuccessStatusCode)
+                Distributors = await JsonSerializer.DeserializeAsync<IEnumerable<QrWithUserResponse>>(await responseMessage.Content.ReadAsStreamAsync());
+            responseMessage = await httpHelper.GetRequest("/User/GetHistoryDistributors");
+            if (responseMessage.IsSuccessStatusCode)
+                HistoryDistributors = await JsonSerializer.DeserializeAsync<IEnumerable<HistoryWithQrUserResponse>>(await responseMessage.Content.ReadAsStreamAsync());
+            responseMessage = await httpHelper.GetRequest("/User/GetHistoryClients");
+            if (responseMessage.IsSuccessStatusCode)
+                HistoryClients = await JsonSerializer.DeserializeAsync<IEnumerable<HistoryWithQrUserResponse>>(await responseMessage.Content.ReadAsStreamAsync());
+            responseMessage = await httpHelper.GetRequest("/User/GetHistoryUserQrApplied");
+            if (responseMessage.IsSuccessStatusCode)
+                HistoryUserQrApplied = await JsonSerializer.DeserializeAsync<IEnumerable<HistoryWithQrUserResponse>>(await responseMessage.Content.ReadAsStreamAsync());
         } catch {
             await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка загрзуки данных. Проверьте подключение к интрнету", "Закрыть");
         }
@@ -110,7 +126,7 @@ internal class HomePageViewModel : BaseViewModel {
     public ICommand AddDistributorCommand { get; }
     public ICommand LoadDataCommand { get; }
     public ICommand ViewQrCommand { get; }
-
+    public ICommand RemoveQrCommand { get; }
     #endregion
     #region Properties
     #region Collections

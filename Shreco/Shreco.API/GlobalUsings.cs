@@ -17,3 +17,4 @@ global using Microsoft.Net.Http.Headers;
 global using Shreco.Helpers;
 global using System.Collections;
 global using Shreco.Responses;
+global using Shreco.Requests;

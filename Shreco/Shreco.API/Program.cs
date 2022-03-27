@@ -1,4 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
+#region Builder Services
+
 builder.Services.AddControllers().AddJsonOptions(options => {
     //options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
 
@@ -47,7 +49,12 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICodeService, CodeService>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IQrService, QrService>();
+builder.Services.AddTransient<IHistoryService, HistoryService>();
+
+#endregion
 var app = builder.Build();
+#region App
+
 if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 else
@@ -57,3 +64,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+#endregion

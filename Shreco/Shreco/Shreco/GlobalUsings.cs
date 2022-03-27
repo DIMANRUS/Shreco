@@ -22,3 +22,4 @@ global using ZXing;
 global using ZXing.QrCode;
 global using System.Collections.Generic;
 global using System.Text.Json.Serialization;
+global using Shreco.Requests;

@@ -1,19 +1,24 @@
 ﻿namespace Shreco.API.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class QrController : ControllerBase {
-    #region
+    #region Private fields
     private readonly IQrService _qrService;
     private readonly IUserService _userService;
     private readonly ITokenService _tokenService;
+    private readonly IHistoryService _historyService;
     private readonly AppContext _appContext;
     #endregion
-    public QrController(IQrService qrService, ITokenService tokenService, AppContext appContext, IUserService userService)
+
+    public QrController(IQrService qrService, ITokenService tokenService, AppContext appContext,
+                        IUserService userService, IHistoryService historyService)
     {
         _qrService = qrService;
         _tokenService = tokenService;
         _appContext = appContext;
         _userService = userService;
+        _historyService = historyService;
     }
 
     /// <summary>
@@ -27,7 +32,7 @@ public class QrController : ControllerBase {
     public async Task<IActionResult> AddRegQr(string percent, string percentForClient)
     {
         try {
-            var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            string bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
             if (await _qrService.IsExistRegistartionQr(int.Parse(percent), int.Parse(percentForClient),
                     int.Parse(TokenHelper.GetNameIdentifer(bearerToken))))
                 return BadRequest("У вас уже есть Qr код с такими процентами.");
@@ -49,9 +54,9 @@ public class QrController : ControllerBase {
     public async Task<IActionResult> AddWorkerToDistributor(int qrId)
     {
         try {
-            var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            string bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
             Qr qr = await _qrService.GetQrById(qrId);
-            if (qr == null || TokenHelper.GetNameIdentifer(bearerToken) == qr.WorkerId.ToString())
+            if (TokenHelper.GetNameIdentifer(bearerToken) == qr.WorkerId.ToString())
                 throw new Exception();
             qr.DistributorId = int.Parse(TokenHelper.GetNameIdentifer(bearerToken));
             qr.QrType = QrType.Distibutor;
@@ -62,15 +67,16 @@ public class QrController : ControllerBase {
         }
     }
 
-    [HttpGet("AddDIstributorToClient")]
+    [HttpGet("AddDistributorToClient")]
     [Authorize]
     public async Task<IActionResult> AddDIstributorToClient(int qrId)
     {
         try {
-            var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            string bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
             Qr qr = await _qrService.GetQrById(qrId);
             int clientId = int.Parse(TokenHelper.GetNameIdentifer(bearerToken));
-            if (qr == null || await _qrService.IsExistQrClient(clientId, qr.DistributorId, qr.WorkerId) || qr.DistributorId.ToString() == TokenHelper.GetNameIdentifer(bearerToken))
+            if (await _qrService.IsExistQrClient(clientId, qr.DistributorId, qr.WorkerId) ||
+                qr.DistributorId.ToString() == TokenHelper.GetNameIdentifer(bearerToken))
                 throw new Exception();
             Qr clientQr = new() {
                 ClientId = clientId,
@@ -87,6 +93,31 @@ public class QrController : ControllerBase {
         }
     }
 
+    /// <summary>
+    /// Вызывается при сканировнии работником Qr кода клиента
+    /// </summary>
+    /// <param name="qrId"></param>
+    /// <returns></returns>
+    [HttpPost("WorkerFromQrCLient")]
+    [Authorize]
+    public async Task<IActionResult> WorkerFromQrClient(ClientQrAfterScaningRequest request)
+    {
+        try {
+            string bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            Qr qr = await _qrService.GetQrById(request.QrId);
+            if (qr.WorkerId != int.Parse(TokenHelper.GetNameIdentifer(bearerToken)))
+                return BadRequest("Qr недействительный");
+            History history = new() {
+                QrId = request.QrId,
+                Price = request.Price
+            };
+            await _historyService.AddHistory(history);
+            return Ok();
+        } catch {
+            return BadRequest("Ошибка");
+        }
+    }
+
     [HttpGet("GetQrToken")]
     [Authorize]
     public async Task<IActionResult> GetQrToken(int qrId)
@@ -95,10 +126,26 @@ public class QrController : ControllerBase {
             Qr qr = await _appContext.Qrs.SingleOrDefaultAsync(x => x.Id == qrId);
             if (qr == null)
                 throw new Exception();
-            var bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            string bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
             return Ok(_tokenService.CreateToken(qr));
         } catch {
             return BadRequest("Ошибка создания токена");
+        }
+    }
+
+    [HttpDelete]
+    [Authorize]
+    public async Task<IActionResult> RemoveQr(int qrId)
+    {
+        try {
+            string bearerToken = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            Qr qr = await _qrService.GetQrById(qrId);
+            int userId = int.Parse(TokenHelper.GetNameIdentifer(bearerToken));
+            if (qr.WorkerId == userId || qr.ClientId == userId || qr.DistributorId == userId)
+                await _qrService.RemoveQr(qr);
+            return Ok();
+        } catch {
+            return BadRequest("Ошибка удаления");
         }
     }
 }
