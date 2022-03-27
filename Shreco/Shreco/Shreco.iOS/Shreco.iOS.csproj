@@ -125,6 +125,27 @@
     <ImageAsset Include="Assets.xcassets\address.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-10.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-11.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-12.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-13.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-14.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-15.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-17.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-18.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-19.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-3.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-4.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-5.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-6.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-7.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-8.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-9.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating.png" />
     <ImageAsset Include="Assets.xcassets\clock.imageset\clock.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -133,6 +154,9 @@
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\clock.imageset\clock2.png">
       <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Contents.json">
+      <Visible>False</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\exit.imageset\exit.png">
       <Visible>false</Visible>
@@ -149,6 +173,12 @@
     <ImageAsset Include="Assets.xcassets\qr.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\rating.imageset\Contents.json">
+      <Visible>False</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\rating.imageset\rating-1.png" />
+    <ImageAsset Include="Assets.xcassets\rating.imageset\rating-2.png" />
+    <ImageAsset Include="Assets.xcassets\rating.imageset\rating.png" />
     <ImageAsset Include="Assets.xcassets\remove.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>

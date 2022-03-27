@@ -19,71 +19,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49c3901-6c1b-48dc-bbb6-2fdeb3229eb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/add.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/add.imageset/add.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/add.imageset/add1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/add.imageset/add2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/address.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/address.imageset/address.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/address.imageset/address1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/address.imageset/address2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/clock.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/clock.imageset/clock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/clock.imageset/clock1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/clock.imageset/clock2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/exit.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/exit.imageset/exit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/exit.imageset/exit1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/exit.imageset/exit2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/location.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/location.imageset/location.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/location.imageset/location1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/location.imageset/location2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/mail.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/mail.imageset/mail.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/mail.imageset/mail1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/mail.imageset/mail2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/money.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/money.imageset/money.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/money.imageset/money1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/money.imageset/money2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/name.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/name.imageset/name.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/name.imageset/name1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/name.imageset/name2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/notfound.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/notfound.imageset/notfound.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/notfound.imageset/notfound1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/notfound.imageset/notfound2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/people.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/people.imageset/people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/people.imageset/people1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/people.imageset/people2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/phone.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/phone.imageset/phone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/phone.imageset/phone1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/phone.imageset/phone2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/qr.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/qr.imageset/qr.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/qr.imageset/qr1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/qr.imageset/qr2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/remove.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/remove.imageset/remove.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/remove.imageset/remove1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/remove.imageset/remove2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/settings.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/settings.imageset/settings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/settings.imageset/settings1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/settings.imageset/settings2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/deploymentTargetDropDown.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/rating-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/rating-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/rating.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/Resource.designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/Resource.designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/drawable/brush.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.Droid/Shreco.Droid.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.Droid/Shreco.Droid.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Resources/LaunchScreen.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Resources/LaunchScreen.storyboard" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,6 +193,7 @@
       <workItem from="1648361298113" duration="1391000" />
       <workItem from="1648363468001" duration="1731000" />
       <workItem from="1648372611599" duration="1561000" />
+      <workItem from="1648374655616" duration="434000" />
     </task>
     <servers />
   </component>
