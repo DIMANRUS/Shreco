@@ -6,6 +6,7 @@
              xmlns:viewmodels="clr-namespace:Shreco.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
              Title="HomePage"
              xmlns:views="clr-namespace:Shreco.Views"
              xmlns:models="clr-namespace:Shreco.Models;assembly=Shreco.Models"
