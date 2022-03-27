@@ -107,6 +107,21 @@
       "size": "1024x1024",
       "idiom": "ios-marketing",
       "filename": "Icon1024.png"
+    },
+    {
+      "scale": "2x",
+      "size": "60x60",
+      "idiom": "car"
+    },
+    {
+      "scale": "3x",
+      "size": "60x60",
+      "idiom": "car"
+    },
+    {
+      "scale": "1x",
+      "size": "1024x1024",
+      "idiom": "watch-marketing"
     }
   ],
   "properties": {},
