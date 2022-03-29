@@ -19,37 +19,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49c3901-6c1b-48dc-bbb6-2fdeb3229eb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating-9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/rating.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/rating-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/rating-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/rating.imageset/rating.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Resources/LaunchScreen.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Resources/LaunchScreen.storyboard" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/Resource.designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/Resource.designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Pages/ScannerPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Pages/ScannerPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/AuthPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/AuthPageViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/HomePageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/HomePageViewModel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,10 +76,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.XAML" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Xamarin.iOS.Shreco.iOS">
+  <component name="RunManager" selected="Xamarin.Android.Shreco.Droid">
     <configuration name="Shreco.API: IISProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
       <riderPublish publish_profile="IISProfile.pubxml" pubxml_path="$PROJECT_DIR$/Shreco.API/Properties/PublishProfiles/IISProfile.pubxml" uuid_high="-6767915095978326180" uuid_low="-4750720562358715545" />
       <method v="2" />
@@ -194,6 +171,10 @@
       <workItem from="1648363468001" duration="1731000" />
       <workItem from="1648372611599" duration="1561000" />
       <workItem from="1648374655616" duration="434000" />
+      <workItem from="1648391887674" duration="315000" />
+      <workItem from="1648392868257" duration="770000" />
+      <workItem from="1648489444362" duration="916000" />
+      <workItem from="1648529340811" duration="5602000" />
     </task>
     <servers />
   </component>

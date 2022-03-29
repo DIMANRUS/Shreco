@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms.Internals;
-
-namespace Shreco.ViewModels;
+﻿namespace Shreco.ViewModels;
 
 internal class AuthPageViewModel : BaseViewModel {
     public AuthPageViewModel()
@@ -27,12 +25,9 @@ internal class AuthPageViewModel : BaseViewModel {
         });
         AuthCommand = new AsyncCommand(async () => {
             CurrentLayoutState = LayoutState.Loading;
-            if (!string.IsNullOrEmpty(Email))
-            {
-                try
-                {
-                    User user = new()
-                    {
+            if (!string.IsNullOrEmpty(Email)) {
+                try {
+                    User user = new() {
                         Email = Email,
                         Adress = Address,
                         Phone = PhoneNumber,
@@ -40,41 +35,34 @@ internal class AuthPageViewModel : BaseViewModel {
                     };
                     using HttpHelper httpHelper = new();
                     HttpResponseMessage responseSessionToken = await httpHelper.GetRequest($"/Auth/SendCode/{user.Email}");
-                    if (responseSessionToken.IsSuccessStatusCode)
-                    {
+                    if (responseSessionToken.IsSuccessStatusCode) {
                         string userCode = await Application.Current.MainPage.DisplayPromptAsync("Код", "Введите код с почты", "Ок");
-                        if (!string.IsNullOrEmpty(userCode))
-                        {
+                        if (!string.IsNullOrEmpty(userCode)) {
                             HttpResponseMessage response;
                             if (_isRegistration)
                                 response = await httpHelper.PostRequest($"/Auth/Register/{userCode}", user, await responseSessionToken.Content.ReadAsStringAsync());
                             else
                                 response = await httpHelper.GetRequest($"/Auth?email={user.Email}&code={userCode}", await responseSessionToken.Content.ReadAsStringAsync());
-                            if (response.IsSuccessStatusCode)
-                            {
+                            if (response.IsSuccessStatusCode) {
                                 await UserDataStore.Set(DatasNames.Token, await response.Content.ReadAsStringAsync());
-                                await Application.Current.MainPage.Navigation.PushModalAsync(new HomePage(), true);
+                                await Application.Current.MainPage.Navigation.PushAsync(new HomePage(), true);
                             }
-                            else
-                                await Application.Current.MainPage.DisplayAlert("Ошибка", await response.Content.ReadAsStringAsync(), "Закрыть");
+                            else {
+                                throw new Exception(await response.Content.ReadAsStringAsync());
+                            }
                         }
-                        else
-                        {
+                        else {
                             await Application.Current.MainPage.DisplayAlert("Ошибка", "Пустое поле", "Закрыть");
                         }
                     }
-                    else
-                    {
-                        await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка сервера", "Закрыть");
+                    else {
+                        throw new Exception();
                     }
-                }
-                catch (Exception ex)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка отправки запроса " + ex.Message, "Закрыть");
+                } catch (Exception ex) {
+                    await Application.Current.MainPage.DisplayAlert("Ошибка", "Ошибка. " + ex.Message, "Закрыть");
                 }
             }
-            else
-            {
+            else {
                 await Application.Current.MainPage.DisplayAlert("Ошибка", "Заполните поля", "Закрыть");
             }
             CurrentLayoutState = LayoutState.None;

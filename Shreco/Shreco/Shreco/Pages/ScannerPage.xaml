@@ -1,4 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml
+    version="1.0"
+    encoding="UTF-8"?>
+
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -6,8 +9,17 @@
     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
     <ContentPage.Content>
         <Grid>
-            <zxing:ZXingScannerView OnScanResult="ZXingScannerView_OnScanResult"/>
-            <Button Text="Закрыть" BackgroundColor="Red" CornerRadius="20" Margin="10" VerticalOptions="End" Clicked="Button_Clicked"/>
-                    </Grid>
+            <zxing:ZXingScannerView
+                OnScanResult="ZXingScannerView_OnScanResult"/>
+            <Button
+                Text="Закрыть"
+                BackgroundColor="Red"
+                CornerRadius="20"
+                Margin="10"
+                VerticalOptions="End"
+                Clicked="Button_Clicked" 
+                FontAttributes="Bold"
+                FontSize="25"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

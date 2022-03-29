@@ -3,7 +3,7 @@
 internal class HttpHelper : IDisposable {
     private readonly HttpClient _httpClient = new() {
 #if DEBUG
-        BaseAddress = new Uri("http://192.168.120.209:5000")
+        BaseAddress = new Uri("http://192.168.179.209:5000")
         //BaseAddress = new Uri("https://shreco.dimanrus.ru/")
 #else
         BaseAddress = new Uri("https://shreco.dimanrus.ru/")

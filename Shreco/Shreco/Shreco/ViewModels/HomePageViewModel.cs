@@ -7,21 +7,17 @@ internal class HomePageViewModel : BaseViewModel {
     public HomePageViewModel()
     {
         OnAppearing = new AsyncCommand(async () => {
-            if (string.IsNullOrEmpty(await UserDataStore.Get(DatasNames.Token)))
-                MainThread.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PushModalAsync(new AuthPage()));
-            else {
-                _token = await UserDataStore.Get(DatasNames.Token);
+            _token = await UserDataStore.Get(DatasNames.Token);
                 Name = TokenHelper.GetName(_token);
                 UserRole = bool.Parse(TokenHelper.GetRole(_token));
                 await LoadData();
                 CurrentLayoutState = LayoutState.None;
-            }
         });
         ExitCommand = new AsyncCommand(async () => {
             UserDataStore.Clear();
-            await Application.Current.MainPage.Navigation.PushModalAsync(new AuthPage());
+            await Application.Current.MainPage.Navigation.PushAsync(new AuthPage());
         });
-        OpenSettingsPageCommand = new AsyncCommand(async() =>
+        OpenSettingsPageCommand = new AsyncCommand(async () =>
             await Application.Current.MainPage.Navigation.PushAsync(new SettingsPage()));
         AddDistributorCommand = new AsyncCommand(async () => {
             HttpResponseMessage httpResponseMessage = null;
@@ -40,9 +36,7 @@ internal class HomePageViewModel : BaseViewModel {
                     string userId = TokenHelper.GetNameIdentifer(await UserDataStore.Get(DatasNames.Token));
                     httpResponseMessage = await httpHelper.GetRequest($"Qr/AddRegQr?percent={percent}&percentForClient={percentClient}");
                     if (httpResponseMessage.IsSuccessStatusCode)
-                        MainThread.BeginInvokeOnMainThread(async () =>
-                            await Application.Current.MainPage.Navigation.PushAsync(
-                                new QrView(await httpResponseMessage.Content.ReadAsStringAsync())));
+                        await LoadData();
                     else
                         throw new Exception();
                 }
