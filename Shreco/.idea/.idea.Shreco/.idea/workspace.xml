@@ -19,14 +19,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b49c3901-6c1b-48dc-bbb6-2fdeb3229eb9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco/Views/NotFoundView.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Shreco/Shreco/Views/NotFoundView.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.API/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/Resource.designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/Resource.designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco.EFDataAccessLibrary/AppContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.EFDataAccessLibrary/AppContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/App.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Pages/ScannerPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Pages/ScannerPage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/AuthPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/AuthPageViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/HomePageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/HomePageViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/BaseViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/BaseViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Views/QrScanButtonView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Views/QrScanButtonView.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +47,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Shreco/Shreco.Droid/Resources/values/styles.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Shreco.API/Controllers/QrController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Shreco/Shreco.Droid/MainActivity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Shreco.API/Controllers/QrController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -55,6 +60,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="SWEA" />
   </component>
   <component name="ProjectId" id="248BSl8P1FdpOED7sAswMgPUBSl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -72,14 +80,13 @@
     <property name="DeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider" value="Device" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.XAML" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Xamarin.Android.Shreco.Droid">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Shreco.API">
     <configuration name="Shreco.API: IISProfile" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
       <riderPublish publish_profile="IISProfile.pubxml" pubxml_path="$PROJECT_DIR$/Shreco.API/Properties/PublishProfiles/IISProfile.pubxml" uuid_high="-6767915095978326180" uuid_low="-4750720562358715545" />
       <method v="2" />
@@ -174,8 +181,25 @@
       <workItem from="1648391887674" duration="315000" />
       <workItem from="1648392868257" duration="770000" />
       <workItem from="1648489444362" duration="916000" />
-      <workItem from="1648529340811" duration="5602000" />
+      <workItem from="1648529340811" duration="6957000" />
+      <workItem from="1648553355057" duration="5244000" />
+      <workItem from="1648610591737" duration="414000" />
+      <workItem from="1648639842523" duration="575000" />
+      <workItem from="1648663558251" duration="4321000" />
+      <workItem from="1648703987290" duration="1053000" />
+      <workItem from="1648726472220" duration="1631000" />
+      <workItem from="1648730475231" duration="1155000" />
+      <workItem from="1648731716149" duration="2412000" />
+      <workItem from="1648744413924" duration="4056000" />
     </task>
+    <task id="LOCAL-00001" summary="Fix navigation">
+      <created>1648536249431</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1648536249431</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,6 +626,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Fix navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix navigation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

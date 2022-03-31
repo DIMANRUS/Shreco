@@ -1,18 +1,24 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Shreco.Views.QrScanButtonView"
-             HorizontalOptions="End"
-             VerticalOptions="End">
+﻿<?xml
+    version="1.0"
+    encoding="UTF-8"?>
+
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Shreco.Views.QrScanButtonView"
+    HorizontalOptions="End"
+    VerticalOptions="End">
     <ContentView.Content>
-        <Frame Padding="6"
-               CornerRadius="30"
-               Margin="10">
-            <ImageButton Source="qr"
-                         BackgroundColor="Transparent"
-                         Margin="5"
-                         HeightRequest="40"
-                         Clicked="OpenScanner_Clicked" />
+        <Frame
+            CornerRadius="15"
+            Margin="10"
+            Padding="5">
+            <ImageButton
+                Source="qr"
+                BackgroundColor="Transparent"
+                Clicked="OpenScanner_Clicked"
+                WidthRequest="40"
+                HeightRequest="40"/>
         </Frame>
     </ContentView.Content>
 </ContentView>

@@ -1,0 +1,24 @@
+﻿<?xml
+    version="1.0"
+    encoding="utf-8"?>
+
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Shreco.Views;assembly=Shreco"
+    x:Class="Shreco.Views.NotFoundView"
+    x:Name="Root"
+    x:DataType="views:NotFoundView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image
+                Source="notfound"
+                HeightRequest="70"/>
+            <Label
+                Text="{Binding Text}"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Margin="30,0,30,0" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentView>

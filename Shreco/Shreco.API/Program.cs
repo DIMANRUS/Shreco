@@ -59,10 +59,11 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 else
     app.UseHsts();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.Map("/", () => 6);
 app.Run();
 
 #endregion

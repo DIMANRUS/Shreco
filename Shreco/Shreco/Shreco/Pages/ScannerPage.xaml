@@ -10,7 +10,8 @@
     <ContentPage.Content>
         <Grid>
             <zxing:ZXingScannerView
-                OnScanResult="ZXingScannerView_OnScanResult"/>
+                OnScanResult="ZXingScannerView_OnScanResult"
+                IsScanning="True"/>
             <Button
                 Text="Закрыть"
                 BackgroundColor="Red"

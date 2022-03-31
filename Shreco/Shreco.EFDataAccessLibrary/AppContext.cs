@@ -4,8 +4,7 @@ using Shreco.Models;
 namespace Shreco.EFDataAccessLibrary;
 
 public class AppContext : DbContext {
-    public AppContext(DbContextOptions<AppContext> options) : base(options)
-    {
+    public AppContext(DbContextOptions<AppContext> options) : base(options) {
 
     }
 
@@ -14,8 +13,7 @@ public class AppContext : DbContext {
     public DbSet<History> Histories { get; set; }
     public DbSet<Session> Sessions { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+    protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
     }
 }

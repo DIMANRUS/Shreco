@@ -1,7 +1,7 @@
 ﻿namespace Shreco.ViewModels;
 
 internal class BaseViewModel : INotifyPropertyChanged {
-    #region IPC
+    #region NPC
     public event PropertyChangedEventHandler PropertyChanged;
     protected void OnNotifyPropertyChanged([CallerMemberName] string propertyName = "") =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

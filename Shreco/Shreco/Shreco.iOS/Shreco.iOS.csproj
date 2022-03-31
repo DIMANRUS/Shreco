@@ -53,6 +53,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>iOS Team Provisioning Profile: com.dimanrus.App</CodesignProvision>
     <MtouchLink>None</MtouchLink>
+    <MtouchExtraArgs>--interpreter</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -125,27 +126,69 @@
     <ImageAsset Include="Assets.xcassets\address.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-10.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-11.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-12.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-13.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-14.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-15.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-16.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-17.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-18.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-19.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-2.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-20.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-3.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-4.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-5.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-6.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-7.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-8.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-9.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-10.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-11.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-12.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-13.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-14.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-15.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-16.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-17.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-18.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-19.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-4.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-5.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-6.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-7.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-8.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating-9.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\rating.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\clock.imageset\clock.png">
       <Visible>false</Visible>
     </ImageAsset>
@@ -176,9 +219,15 @@
     <ImageAsset Include="Assets.xcassets\rating.imageset\Contents.json">
       <Visible>False</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\rating.imageset\rating-1.png" />
-    <ImageAsset Include="Assets.xcassets\rating.imageset\rating-2.png" />
-    <ImageAsset Include="Assets.xcassets\rating.imageset\rating.png" />
+    <ImageAsset Include="Assets.xcassets\rating.imageset\rating-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\rating.imageset\rating-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\rating.imageset\rating.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\remove.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
