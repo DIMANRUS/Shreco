@@ -18,21 +18,7 @@
     <projectFile pubXmlPath="Shreco.API/Properties/PublishProfiles/IISProfile.pubxml">Shreco.API/Shreco.API.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b49c3901-6c1b-48dc-bbb6-2fdeb3229eb9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco/Views/NotFoundView.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shreco/Shreco/Views/NotFoundView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shreco/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.API/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco.EFDataAccessLibrary/AppContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco.EFDataAccessLibrary/AppContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco.iOS/Shreco.iOS.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/App.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Helpers/HttpHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Pages/HomePage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Pages/ScannerPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Pages/ScannerPage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/BaseViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/ViewModels/BaseViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shreco/Shreco/Views/QrScanButtonView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/Shreco/Shreco/Views/QrScanButtonView.xaml" afterDir="false" />
-    </list>
+    <list default="true" id="b49c3901-6c1b-48dc-bbb6-2fdeb3229eb9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,7 +176,7 @@
       <workItem from="1648726472220" duration="1631000" />
       <workItem from="1648730475231" duration="1155000" />
       <workItem from="1648731716149" duration="2412000" />
-      <workItem from="1648744413924" duration="4056000" />
+      <workItem from="1648744413924" duration="4302000" />
     </task>
     <task id="LOCAL-00001" summary="Fix navigation">
       <created>1648536249431</created>
@@ -199,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648536249431</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add NotFoundView, Fix UI IOS">
+      <created>1648749049651</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1648749049651</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,7 +620,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Fix navigation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix navigation" />
+    <MESSAGE value="Add NotFoundView, Fix UI IOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add NotFoundView, Fix UI IOS" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
