@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shreco.Pages.SettingsPage"
+             xmlns:ViewModels="clr-namespace:Shreco.ViewModels"
+             xmlns:xctk="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:views="clr-namespace:Shreco.Views"
+             x:DataType="ViewModels:SettingsPageViewModel"
+             Title="Настройки">
+    <ContentPage.BindingContext>
+        <ViewModels:SettingsPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Behaviors>
+        <xctk:EventToCommandBehavior EventName="Appearing"
+                                     Command="{Binding OnAppearing}" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <Grid xctk:StateLayout.CurrentState="{Binding CurrentLayoutState}"
+              xctk:StateLayout.AnimateStateChanges="true">
+            <xctk:StateLayout.StateViews>
+                <xctk:StateView StateKey="Loading"
+                                VerticalOptions="Center">
+                    <views:LoaderView />
+                </xctk:StateView>
+            </xctk:StateLayout.StateViews>
+            <StackLayout Margin="10">
+                <Entry Placeholder="Имя пользователя"
+                       Text="{Binding User.NameIdentifer}" />
+                <Entry Placeholder="Почта"
+                       Text="{Binding User.Email}" />
+                <Entry Placeholder="Адрес"
+                       Text="{Binding User.Adress}"
+                       IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Worker}}" />
+                <Entry Placeholder="Телефон"
+                       Text="{Binding User.Phone}"
+                       IsVisible="{Binding UserRole, Converter={StaticResource RoleToVisibleConverter}, ConverterParameter={StaticResource Worker}}" />
+                <Button Text="Сохранить"
+                        Margin="20"
+                        Command="{Binding UpdateUserCommand}" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
